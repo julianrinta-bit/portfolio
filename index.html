@@ -62,11 +62,55 @@ section{padding:clamp(5rem,12vw,11rem) 0}
 .nav-cta:hover{background:var(--accent-hover);color:var(--bg-deep)}
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.5rem;min-height:44px;min-width:44px;align-items:center;justify-content:center}
 .hamburger span{display:block;width:20px;height:2px;background:var(--text-primary);margin:4px 0;transition:transform .3s ease,opacity .3s ease}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(8,8,8,.95);backdrop-filter:blur(20px);z-index:999;flex-direction:column;justify-content:center;align-items:center;gap:2rem}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(4,4,4,.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);z-index:9998;flex-direction:column;justify-content:center;align-items:center;gap:1.5rem;padding:2rem}
 .mobile-menu.open{display:flex}
-.mobile-menu a{font-family:var(--font-display);font-size:1.5rem;font-weight:500;color:var(--text-primary);padding:1rem}
-.mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--text-primary);font-size:1.5rem;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;justify-content:center}
-@media(max-width:768px){.nav-links{display:none}.nav-cta{display:none}.hamburger{display:flex}}
+.mobile-menu a{font-family:var(--font-display);font-size:clamp(1.3rem,5vw,2rem);font-weight:500;color:var(--text-primary);padding:.8rem 1.5rem;text-align:center;transition:color .2s ease}
+.mobile-menu a:last-child{color:var(--bg-deep);background:var(--accent);padding:.8rem 2rem;margin-top:1rem;font-size:clamp(1rem,4vw,1.3rem)}
+.mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--text-primary);font-size:2rem;cursor:pointer;min-height:48px;min-width:48px;display:flex;align-items:center;justify-content:center}
+@media(max-width:768px){.nav-links{display:none}.nav-cta{display:none}.hamburger{display:flex}
+/* Mobile hero */
+.hero{padding-bottom:3rem;padding-top:6rem}
+.hero h1{font-size:clamp(2.8rem,12vw,4.5rem);margin-bottom:1.2rem}
+.hero-stats{font-size:.85rem;line-height:1.6}
+.hero-tagline{font-size:1rem;margin-bottom:1.5rem}
+.hero-ctas{gap:.8rem}
+.btn-solid,.btn-ghost{padding:.9rem 1.5rem;font-size:.75rem;width:100%}
+.hero-badges{gap:.6rem}
+.hero-badge{font-size:.5rem;padding:.35rem .7rem}
+/* Mobile brag */
+.brag-forbes-label{font-size:clamp(1.8rem,8vw,3rem)}
+.brag-number{font-size:clamp(2rem,8vw,3rem)}
+/* Mobile flip cards */
+.flip-card{min-height:380px}
+.flip-inner{min-height:380px}
+.fc-opening{font-size:1.1rem}
+.fc-thesis{font-size:.8rem}
+/* Mobile sections */
+.section-label{font-size:.58rem;margin-bottom:2rem}
+.think-heading{font-size:clamp(1.8rem,6vw,2.5rem)}
+.work-ai-header h2{font-size:clamp(1.8rem,6vw,2.5rem)}
+.triplet{font-size:clamp(1.05rem,4vw,1.3rem)}
+/* Mobile track */
+.track-headline{font-size:clamp(1.2rem,5vw,1.8rem)}
+.track-stats li{font-size:.78rem}
+.cred-badge{font-size:.65rem}
+/* Mobile IP line */
+.ip-content p{font-size:clamp(1rem,4vw,1.3rem)}
+.ip-closer{font-size:clamp(1.1rem,4.5vw,1.5rem)}
+/* Mobile forbes */
+.forbes blockquote{font-size:clamp(1.15rem,4vw,1.8rem)}
+/* Mobile about */
+.about h2{font-size:clamp(1.8rem,6vw,2.5rem)}
+/* Mobile CTA */
+.cta-section h2{font-size:clamp(1.8rem,6vw,2.5rem)}
+.contact-form{max-width:100%}
+.form-actions{flex-direction:column}
+.form-actions .btn-solid,.form-actions .btn-ghost{width:100%;justify-content:center}
+/* Mobile footer */
+.footer .container{flex-direction:column;gap:.5rem;text-align:center}
+/* Mobile RE Paid dual market grid */
+.flip-back [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+}
 
 /* HERO */
 .hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(4rem,8vw,7rem);position:relative;overflow:hidden}
