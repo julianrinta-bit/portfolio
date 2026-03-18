@@ -602,14 +602,16 @@ section{padding:clamp(5rem,12vw,11rem) 0}
 </div>
 </footer>
 
-<button class="scroll-top" id="scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
 </button>
 
 <script>
 (function(){const els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('visible'));return}const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});els.forEach(e=>obs.observe(e))})();
 (function(){const nums=document.querySelectorAll('.brag-number[data-target]');if(!('IntersectionObserver' in window))return;const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;obs.unobserve(e.target);const el=e.target,target=parseInt(el.dataset.target),prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'',dur=1400,start=performance.now();function step(now){const p=Math.min((now-start)/dur,1),eased=1-Math.pow(1-p,3);el.textContent=prefix+Math.round(eased*target)+suffix;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)})},{threshold:.5});nums.forEach(e=>obs.observe(e))})();
-(function(){const nav=document.getElementById('nav');const stt=document.getElementById('scroll-top');const nLogo=document.getElementById('nav-logo');const nDot=document.getElementById('nav-dot');const hero=document.getElementById('hero');let t=false;window.addEventListener('scroll',()=>{if(!t){requestAnimationFrame(()=>{const scrolled=window.scrollY>80;const pastHero=hero.getBoundingClientRect().bottom<60;nav.classList.toggle('scrolled',scrolled);stt.classList.toggle('visible',window.scrollY>600);nLogo.classList.toggle('show',pastHero);nDot.classList.toggle('show',pastHero);t=false});t=true}})})();
+(function(){const nav=document.getElementById('nav');const stt=document.getElementById('scroll-top');const nLogo=document.getElementById('nav-logo');const nDot=document.getElementById('nav-dot');const hero=document.getElementById('hero');let scrollingToTop=false;let t=false;
+window.addEventListener('scroll',()=>{if(!t){requestAnimationFrame(()=>{const scrolled=window.scrollY>80;const pastHero=hero.getBoundingClientRect().bottom<60;nav.classList.toggle('scrolled',scrolled);if(!scrollingToTop){stt.classList.toggle('visible',window.scrollY>600)}if(window.scrollY<10){scrollingToTop=false;stt.classList.remove('visible')}nLogo.classList.toggle('show',pastHero);nDot.classList.toggle('show',pastHero);t=false});t=true}});
+stt.addEventListener('click',()=>{scrollingToTop=true;window.scrollTo({top:0,behavior:'smooth'})})})();
 document.querySelectorAll('a[href^="#"]').forEach(l=>{l.addEventListener('click',e=>{const t=document.querySelector(l.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
 document.querySelectorAll('.flip-card').forEach(c=>{c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();c.classList.toggle('flipped')}})});
 // Contact form — AJAX submit, stays on page
