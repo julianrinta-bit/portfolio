@@ -104,7 +104,18 @@ section { padding:clamp(4rem,10vw,8rem) 0; }
 .pillar-mini { background:var(--bg-card); padding:1rem; }
 .pillar-mini-pct { font-family:var(--font-display); font-weight:700; font-size:1.4rem; color:var(--accent-light); }
 .pillar-mini-name { font-family:var(--font-mono); font-size:.55rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-top:.2rem; }
-@media(max-width:600px) { .pillars-mini { grid-template-columns:1fr; } }
+@media(max-width:600px) {
+  .pillars-mini { grid-template-columns:1fr; }
+  .hero h1 { font-size:clamp(1.8rem,7vw,2.5rem); }
+  .hero-stats { gap:1.5rem; }
+  .metrics-grid { grid-template-columns:repeat(2,1fr); }
+  .case-headline { font-size:clamp(1.1rem,4vw,1.5rem); }
+  .section-title { font-size:clamp(1.5rem,5vw,2rem); }
+  .build-grid { grid-template-columns:1fr; }
+  .track-grid { grid-template-columns:1fr; }
+  .cta-links { flex-direction:column; align-items:center; }
+  .cta-btn { width:100%; justify-content:center; }
+}
 
 /* TRACK RECORD */
 .track-section { background:var(--bg-surface); }
