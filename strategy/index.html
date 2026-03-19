@@ -175,8 +175,9 @@ section{padding:clamp(5rem,12vw,9rem) 0}
 .bc p{font-size:.85rem;color:var(--t3);line-height:1.6}
 
 /* ═══ CTA ═══ */
-.cs{background:var(--bgs,#0f1821);text-align:center;padding:clamp(4rem,8vw,7rem) 0;position:relative}
-.cs p{margin-left:auto;margin-right:auto;text-align:center}
+.cs{background:var(--bgs,#0f1821);text-align:center;padding:clamp(4rem,8vw,7rem) 0;position:relative;display:flex;justify-content:center}
+.cs .ct{display:flex;flex-direction:column;align-items:center}
+.cs p{max-width:none;text-align:center}
 .cs::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--b),transparent)}
 .cs h2{font-family:var(--fd);font-weight:600;font-size:clamp(2rem,4.5vw,3rem);letter-spacing:-.02em;margin-bottom:.8rem}
 .cs>p{color:var(--t2);margin:0 auto 2rem}
