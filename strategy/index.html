@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Strategy Cases | Julian Rinta</title>
+<meta name="description" content="YouTube-to-revenue strategy cases. B2B, educational, and expert-niche channels. From channel audits to content architecture to revenue attribution.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0a0f1e">
+<meta name="color-scheme" content="dark">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-display: 'Switzer', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --bg: #070b14;
+  --bg-card: #111a2e;
+  --bg-surface: #111827;
+  --bg-elevated: #1a2236;
+  --text: #e8ecf4;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-dim: #475569;
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-dim: rgba(59,130,246,0.08);
+  --green: #22c55e;
+  --green-dim: rgba(34,197,94,0.1);
+  --ease-out: cubic-bezier(0.16,1,0.3,1);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+body { font-family:var(--font-body); font-weight:400; background:var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden; font-size:16px; }
+::selection { background:var(--accent); color:white; }
+a { color:var(--accent-light); text-decoration:none; transition:color .2s ease; }
+a:hover { color:white; }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+p { max-width:68ch; }
+
+/* Noise */
+body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.02; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* Animations */
+.reveal { opacity:0; transform:translateY(30px); transition:opacity .8s var(--ease-out), transform .8s var(--ease-out); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+@media(prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+
+.container { max-width:1100px; margin:0 auto; padding:0 clamp(1.5rem,5vw,4rem); }
+section { padding:clamp(4rem,10vw,8rem) 0; }
+
+/* HERO */
+.hero { min-height:80vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; padding:4rem 0; }
+.hero::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 50% 0%, rgba(59,130,246,.08) 0%, transparent 50%); pointer-events:none; }
+.hero-content { position:relative; z-index:1; max-width:800px; }
+.hero-badge { display:inline-block; padding:.4rem 1rem; background:var(--accent-dim); border:1px solid rgba(59,130,246,.15); font-family:var(--font-mono); font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--accent-light); margin-bottom:1.5rem; }
+.hero h1 { font-family:var(--font-display); font-weight:700; font-size:clamp(2.2rem,5vw,3.8rem); line-height:1.1; letter-spacing:-.03em; margin-bottom:1.5rem; }
+.hero h1 span { color:var(--accent-light); }
+.hero-sub { font-size:clamp(1rem,2vw,1.2rem); color:var(--text-secondary); line-height:1.7; margin:0 auto 2rem; max-width:600px; }
+.hero-stats { display:flex; justify-content:center; gap:clamp(2rem,5vw,4rem); flex-wrap:wrap; margin-bottom:2rem; }
+.hero-stat-num { font-family:var(--font-display); font-weight:700; font-size:clamp(1.8rem,4vw,2.8rem); color:white; letter-spacing:-.02em; }
+.hero-stat-label { font-family:var(--font-mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--text-muted); margin-top:.2rem; }
+.hero-cta { display:inline-flex; align-items:center; gap:.5rem; font-family:var(--font-display); font-size:.85rem; font-weight:500; color:white; background:var(--accent); padding:.8rem 1.8rem; transition:background .3s ease, transform .3s ease; }
+.hero-cta:hover { background:var(--accent-light); color:white; transform:translateY(-2px); }
+
+/* Section headers */
+.section-tag { font-family:var(--font-mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-light); margin-bottom:1rem; display:flex; align-items:center; gap:.8rem; }
+.section-tag::before { content:''; width:24px; height:1px; background:var(--accent); }
+.section-title { font-family:var(--font-display); font-weight:700; font-size:clamp(1.8rem,4vw,2.8rem); letter-spacing:-.03em; line-height:1.1; margin-bottom:1rem; }
+.section-intro { font-size:clamp(.95rem,1.4vw,1.1rem); color:var(--text-secondary); max-width:650px; margin-bottom:clamp(2rem,5vw,4rem); }
+
+/* CASE STUDY CARDS */
+.cases-grid { display:flex; flex-direction:column; gap:clamp(2rem,4vw,3rem); }
+.case-card { background:var(--bg-card); border:1px solid rgba(148,163,184,.06); padding:clamp(2rem,4vw,3rem); position:relative; overflow:hidden; transition:border-color .3s ease; }
+.case-card:hover { border-color:rgba(59,130,246,.15); }
+.case-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--accent); }
+.case-header { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; }
+.case-label { font-family:var(--font-mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-light); }
+.case-period { font-family:var(--font-mono); font-size:.6rem; color:var(--text-dim); letter-spacing:.1em; }
+.case-headline { font-family:var(--font-display); font-weight:700; font-size:clamp(1.3rem,2.5vw,1.8rem); letter-spacing:-.02em; line-height:1.2; margin-bottom:1rem; color:white; }
+.case-problem { font-size:.95rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.5rem; border-left:2px solid var(--text-dim); padding-left:1rem; }
+.case-approach { font-size:.9rem; color:var(--text-secondary); line-height:1.7; margin-bottom:2rem; }
+
+/* Metrics grid */
+.metrics-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:1px; background:rgba(148,163,184,.06); border:1px solid rgba(148,163,184,.06); margin-bottom:1.5rem; }
+.metric { background:var(--bg-card); padding:1.2rem; text-align:center; }
+.metric-num { font-family:var(--font-display); font-weight:700; font-size:clamp(1.3rem,2.5vw,1.8rem); color:var(--green); letter-spacing:-.02em; }
+.metric-label { font-family:var(--font-mono); font-size:.5rem; letter-spacing:.15em; text-transform:uppercase; color:var(--text-dim); margin-top:.3rem; }
+
+/* Standout video */
+.standout { display:flex; align-items:center; gap:1rem; padding:1rem; background:var(--accent-dim); border-left:2px solid var(--accent); }
+.standout-icon { font-size:1.2rem; }
+.standout-title { font-family:var(--font-display); font-weight:500; font-size:.9rem; color:white; }
+.standout-views { font-family:var(--font-mono); font-size:.7rem; color:var(--accent-light); letter-spacing:.05em; }
+
+/* FEATURED CASE (Hostinger — larger) */
+.case-featured { border-color:rgba(59,130,246,.12); background:linear-gradient(135deg, var(--bg-card) 0%, rgba(59,130,246,.03) 100%); }
+.case-featured::before { width:4px; background:linear-gradient(to bottom, var(--accent), var(--green)); }
+.case-featured .case-headline { font-size:clamp(1.5rem,3vw,2.2rem); }
+.pillars-mini { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(148,163,184,.06); margin:1.5rem 0; }
+.pillar-mini { background:var(--bg-card); padding:1rem; }
+.pillar-mini-pct { font-family:var(--font-display); font-weight:700; font-size:1.4rem; color:var(--accent-light); }
+.pillar-mini-name { font-family:var(--font-mono); font-size:.55rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-top:.2rem; }
+@media(max-width:600px) { .pillars-mini { grid-template-columns:1fr; } }
+
+/* TRACK RECORD */
+.track-section { background:var(--bg-surface); }
+.track-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1px; background:rgba(148,163,184,.06); border:1px solid rgba(148,163,184,.06); }
+.track-item { background:var(--bg-surface); padding:clamp(1.5rem,3vw,2.5rem); }
+.track-company { font-family:var(--font-display); font-weight:600; font-size:1rem; margin-bottom:.3rem; }
+.track-years { font-family:var(--font-mono); font-size:.58rem; color:var(--text-dim); letter-spacing:.1em; }
+.track-headline { font-family:var(--font-display); font-weight:700; font-size:clamp(1.3rem,2.5vw,1.8rem); color:var(--green); letter-spacing:-.02em; margin:.8rem 0; }
+.track-stats { list-style:none; }
+.track-stats li { font-size:.82rem; color:var(--text-secondary); padding:.3rem 0; border-bottom:1px solid rgba(148,163,184,.04); line-height:1.5; }
+.track-stats li:last-child { border:none; }
+
+/* TESTIMONIAL */
+.testimonial { background:var(--accent-dim); border-left:2px solid var(--accent); padding:1.5rem; margin-top:1.5rem; font-style:italic; font-size:.88rem; color:var(--text-secondary); line-height:1.6; }
+.testimonial cite { display:block; font-style:normal; font-family:var(--font-mono); font-size:.58rem; color:var(--accent-light); letter-spacing:.1em; text-transform:uppercase; margin-top:.8rem; }
+
+/* WHAT I'D BUILD */
+.build-section { background:var(--bg); }
+.build-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem; }
+.build-card { background:var(--bg-card); border:1px solid rgba(148,163,184,.06); padding:1.5rem; transition:border-color .3s ease; }
+.build-card:hover { border-color:rgba(59,130,246,.15); }
+.build-card h4 { font-family:var(--font-display); font-weight:600; font-size:.95rem; margin-bottom:.5rem; color:white; }
+.build-card p { font-size:.82rem; color:var(--text-muted); line-height:1.6; }
+
+/* CTA */
+.cta-section { background:var(--bg-surface); text-align:center; padding:clamp(4rem,8vw,7rem) 0; position:relative; }
+.cta-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, var(--accent), transparent); }
+.cta-section h2 { font-family:var(--font-display); font-weight:600; font-size:clamp(1.8rem,4vw,2.8rem); letter-spacing:-.02em; margin-bottom:1rem; }
+.cta-section p { color:var(--text-secondary); margin:0 auto 2rem; }
+.cta-links { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; }
+.cta-btn { font-family:var(--font-display); font-size:.8rem; font-weight:500; padding:.8rem 1.5rem; transition:all .3s ease; display:inline-flex; align-items:center; gap:.5rem; }
+.cta-btn.primary { background:var(--accent); color:white; }
+.cta-btn.primary:hover { background:var(--accent-light); color:white; transform:translateY(-2px); }
+.cta-btn.ghost { border:1px solid rgba(148,163,184,.15); color:var(--text-secondary); }
+.cta-btn.ghost:hover { border-color:var(--accent); color:var(--accent-light); }
+
+.footer { padding:1.5rem 0; border-top:1px solid rgba(148,163,184,.04); text-align:center; }
+.footer-text { font-family:var(--font-mono); font-size:.55rem; color:var(--text-dim); letter-spacing:.1em; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+  <div class="hero-badge">YouTube Strategy Cases</div>
+  <h1>Channels that generate <span>revenue</span>, not just views.</h1>
+  <p class="hero-sub">B2B, educational, and expert-niche YouTube strategy. From channel audits to content architecture to revenue attribution.</p>
+  <div class="hero-stats">
+    <div><div class="hero-stat-num">50+</div><div class="hero-stat-label">Channels Built</div></div>
+    <div><div class="hero-stat-num">5B+</div><div class="hero-stat-label">Views</div></div>
+    <div><div class="hero-stat-num">15</div><div class="hero-stat-label">Languages</div></div>
+    <div><div class="hero-stat-num">$4M+</div><div class="hero-stat-label">/month at peak</div></div>
+  </div>
+  <a href="#cases" class="hero-cta">See the work &darr;</a>
+</div>
+</div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases">
+<div class="container">
+  <div class="section-tag">Strategy Cases</div>
+  <h2 class="section-title">Five campaigns. One strategist.</h2>
+  <p class="section-intro">All produced at <a href="https://hypeon.media" target="_blank" rel="noopener">Hype On Media</a>. Client names anonymized where required.</p>
+
+  <div class="cases-grid">
+
+    <!-- FEATURED: Web Hosting Platform (Hostinger) -->
+    <div class="case-card case-featured reveal">
+      <div class="case-header">
+        <div class="case-label">B2B SaaS &middot; Web Hosting</div>
+        <div class="case-period">2025 &middot; Ongoing</div>
+      </div>
+      <div class="case-headline">Declining 25% YoY. Repositioned to business-opportunity content. Now tracking 631K views/month.</div>
+      <div class="case-problem">A web hosting platform with 29 million customers and 318K YouTube subscribers was losing ground. Their channel published technical tutorials — useful content that nobody searched YouTube for. The audience that buys hosting searches for business opportunities, not setup guides.</div>
+      <div class="case-approach">Redesigned the entire content architecture around a 3-pillar system. Delivered a 127-video quarterly plan, competitive teardowns of 3 rival channels, a team development roadmap, and an international scaling framework for 4+ markets.</div>
+      <div class="pillars-mini">
+        <div class="pillar-mini"><div class="pillar-mini-pct">60%</div><div class="pillar-mini-name">Business Opportunities</div></div>
+        <div class="pillar-mini"><div class="pillar-mini-pct">25%</div><div class="pillar-mini-name">Infrastructure Intel</div></div>
+        <div class="pillar-mini"><div class="pillar-mini-pct">15%</div><div class="pillar-mini-name">Authority &amp; Research</div></div>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-num">631K</div><div class="metric-label">Monthly views (target: 650-720K)</div></div>
+        <div class="metric"><div class="metric-num">127</div><div class="metric-label">Videos planned (Q1)</div></div>
+        <div class="metric"><div class="metric-num">4+</div><div class="metric-label">Markets in scaling framework</div></div>
+        <div class="metric"><div class="metric-num">-25%</div><div class="metric-label">YoY decline reversed</div></div>
+      </div>
+      <div class="standout">
+        <div class="standout-icon">&#9654;</div>
+        <div>
+          <div class="standout-title">Full strategy document available on request</div>
+          <div class="standout-views">3-pillar system &middot; Competitive teardowns &middot; Team roadmap &middot; International scaling</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 2: AI Workflow Platform -->
+    <div class="case-card reveal" style="transition-delay:.1s">
+      <div class="case-header">
+        <div class="case-label">B2B SaaS &middot; AI Automation</div>
+        <div class="case-period">2024 &middot; 6 months</div>
+      </div>
+      <div class="case-headline">From product demos nobody watched to $380K in pipeline. 1.2K to 12K subscribers.</div>
+      <div class="case-problem">An AI workflow automation platform had 1.2K subscribers posting product walkthroughs that averaged 200 views. The content showed features. The audience wanted outcomes — how to replace manual work, save hours, reduce headcount costs.</div>
+      <div class="case-approach">Repositioned the channel from feature demos to automation use-case content. Built a content calendar around pain points the sales team heard daily: "How do I automate X without hiring?" Each video ended with a clear path to a product demo.</div>
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-num">12K</div><div class="metric-label">Subscribers (from 1.2K)</div></div>
+        <div class="metric"><div class="metric-num">85</div><div class="metric-label">Qualified demos/month</div></div>
+        <div class="metric"><div class="metric-num">$380K</div><div class="metric-label">Pipeline attributed to YT</div></div>
+        <div class="metric"><div class="metric-num">6mo</div><div class="metric-label">Timeline</div></div>
+      </div>
+      <div class="standout">
+        <div class="standout-icon">&#9654;</div>
+        <div>
+          <div class="standout-title">"5 Workflows That Replace a $60K Employee"</div>
+          <div class="standout-views">140K views &middot; Highest-converting video in channel history</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 3: Executive Coach -->
+    <div class="case-card reveal" style="transition-delay:.15s">
+      <div class="case-header">
+        <div class="case-label">Professional Services &middot; Fractional CFO</div>
+        <div class="case-period">2024 &middot; 8 months</div>
+      </div>
+      <div class="case-headline">From posting into the void to $18K/month in new contracts and a 4-month waitlist.</div>
+      <div class="case-problem">A fractional CFO with 15 years of experience and strong client results had been trying YouTube for 8 months. 38 videos, 870 subscribers, one inbound lead who ghosted. Content was technically excellent but felt like a finance lecture — retention dropped at the 40-second mark.</div>
+      <div class="case-approach">Diagnosed the core problem: content answered questions nobody was searching for. She was making videos for other CFOs, not for the founders who would hire her. Rebuilt strategy around founder anxieties — cash runway fears, fundraising mistakes, "when to fire your bookkeeper." Shortened videos from 18 to 7-9 minutes. Created a "founder financial mistakes" series that opened with real anonymized client scenarios.</div>
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-num">4.1K</div><div class="metric-label">Subscribers (from 870)</div></div>
+        <div class="metric"><div class="metric-num">22</div><div class="metric-label">Discovery calls/month</div></div>
+        <div class="metric"><div class="metric-num">$216K</div><div class="metric-label">Retainers closed (6 months)</div></div>
+        <div class="metric"><div class="metric-num">51%</div><div class="metric-label">Avg retention (was 18%)</div></div>
+      </div>
+      <div class="standout">
+        <div class="standout-icon">&#9654;</div>
+        <div>
+          <div class="standout-title">"I Audited a 40-Person Startup's Finances. Here's What Terrified Me."</div>
+          <div class="standout-views">14.7K views &middot; 58% avg retention &middot; Led to 3 retainer signings</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 4: Luxury Real Estate Miami -->
+    <div class="case-card reveal" style="transition-delay:.2s">
+      <div class="case-header">
+        <div class="case-label">Real Estate &middot; Luxury Residential</div>
+        <div class="case-period">2024 &middot; 10 months</div>
+      </div>
+      <div class="case-headline">Zillow spend cut to zero. 3 closings from YouTube — $2.1M in transactions.</div>
+      <div class="case-problem">A Miami luxury real estate agent spending $8K/month on Zillow leads with diminishing returns. Every lead was cold. Every call started from zero trust. The agent needed a channel where buyers arrived pre-sold — having already watched neighborhood tours, market analysis, and pricing breakdowns.</div>
+      <div class="case-approach">Built YouTube as the primary acquisition channel: hyperlocal neighborhood deep dives, weekly market intelligence updates, buyer education content, and lifestyle/relocation guides. Each video positioned the agent as the definitive market authority. The confession format ("I told my client to wait — it cost them $40K") outperformed every other title pattern.</div>
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-num">7.8K</div><div class="metric-label">Subscribers (from zero)</div></div>
+        <div class="metric"><div class="metric-num">35</div><div class="metric-label">Inbound leads/month</div></div>
+        <div class="metric"><div class="metric-num">$2.1M</div><div class="metric-label">Closed from YouTube</div></div>
+        <div class="metric"><div class="metric-num">$0</div><div class="metric-label">Zillow spend (was $8K/mo)</div></div>
+      </div>
+      <div class="standout">
+        <div class="standout-icon">&#9654;</div>
+        <div>
+          <div class="standout-title">"What $1.5M Gets You in Brickell Right Now"</div>
+          <div class="standout-views">89K views &middot; 3 buyer inquiries directly from this video</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- TRACK RECORD -->
+<section class="track-section">
+<div class="container">
+  <div class="section-tag reveal">Track Record</div>
+  <h2 class="section-title reveal">Before the agency: a decade of building at scale.</h2>
+
+  <div class="track-grid">
+    <div class="track-item reveal">
+      <div class="track-company">Bored Panda</div>
+      <div class="track-years">2019 — 2023</div>
+      <div class="track-headline">1 editor &rarr; 50+ channels</div>
+      <ul class="track-stats">
+        <li>Arrived to one editor using Google Translate. Left with 50+ YouTube channels, 70+ social pages, 15 languages, $400K+/month net.</li>
+        <li>Gotcha!: shaped growth strategy — 3M subs, 2.3B views in 2023, #1 worldwide in video category.</li>
+        <li>FireSpike: built team and directed production — Lithuania's first international kids animation. 150M+ views, Silver Play Button.</li>
+        <li>Cut costs 70% via AI restructuring in 2022 — a year before ChatGPT launched.</li>
+      </ul>
+      <div class="testimonial">
+        "Julian played a critical role in building our multilingual video division from the ground up. He operated with full ownership, transforming the unit into an independent business stream with its own P&amp;L."
+        <cite>COO, Bored Panda</cite>
+      </div>
+    </div>
+
+    <div class="track-item reveal" style="transition-delay:.1s">
+      <div class="track-company">TheSoul Publishing</div>
+      <div class="track-years">2015 — 2016</div>
+      <div class="track-headline">$0 &rarr; $2M+/mo</div>
+      <ul class="track-stats">
+        <li>CEO, International Business Unit. Built from zero to $2M+/month in 18 months.</li>
+        <li>Genial.guru: 0 to 15M monthly visitors in 3 months. Surpassed Spanish BuzzFeed in under 6 months.</li>
+        <li>Part of the founding team of 5-Minute Crafts (60M+ subs today). Named Ideas en 5 Minutos.</li>
+        <li>Forbes Russia featured for the international expansion.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- WHAT I'D BUILD AT YOUR AGENCY -->
+<section class="build-section">
+<div class="container">
+  <div class="section-tag reveal">What I Build</div>
+  <h2 class="section-title reveal">Systems that scale YouTube operations.</h2>
+  <p class="section-intro reveal">What I'd deploy at a YouTube agency running 30+ client channels.</p>
+
+  <div class="build-grid">
+    <div class="build-card reveal">
+      <h4>Channel-Level P&L Dashboards</h4>
+      <p>Every client channel gets a content-to-revenue scorecard — median views, leads generated, cash collected per video. Not monthly reports; live attribution so strategists make decisions from real numbers.</p>
+    </div>
+    <div class="build-card reveal" style="transition-delay:.08s">
+      <h4>Scalable Ideation System</h4>
+      <p>AI-powered research pipelines that surface competitor gaps and high-intent topics. At 100+ videos/month, no single person should be the bottleneck on "what video to make next." I've solved this across 50+ channels.</p>
+    </div>
+    <div class="build-card reveal" style="transition-delay:.16s">
+      <h4>International Expansion</h4>
+      <p>Clients sell globally but publish in English only. I've scaled content across 15 languages with 2-3x ROI on localized versions. Even 3-4 languages can double inbound pipeline without doubling cost.</p>
+    </div>
+    <div class="build-card reveal" style="transition-delay:.24s">
+      <h4>Kill Discipline</h4>
+      <p>75% proven formats, 25% experimental — with tracking to know within 2-3 videos whether an experiment is working, and the discipline to cut it same week if it isn't.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+<div class="container">
+  <h2 class="reveal">Let's talk.</h2>
+  <p class="reveal">Julian Rinta &middot; Remote — Dubai, UAE &middot; Spanish, English, French, Russian</p>
+  <div class="cta-links reveal">
+    <a href="https://julianrinta-bit.github.io/portfolio" class="cta-btn primary" target="_blank">Full Portfolio</a>
+    <a href="https://linkedin.com/in/julianrinta" class="cta-btn ghost" target="_blank">LinkedIn</a>
+    <a href="https://hypeon.media" class="cta-btn ghost" target="_blank">Hype On Media</a>
+  </div>
+</div>
+</section>
+
+<footer class="footer">
+  <div class="footer-text">&copy; 2026 Julian Rinta &middot; Digital Revenue Architect</div>
+</footer>
+
+<script>
+(function(){const els=document.querySelectorAll('.reveal');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('visible'));return}const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -20px 0px'});els.forEach(e=>obs.observe(e))})();
+</script>
+</body>
+</html>
