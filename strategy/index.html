@@ -7,326 +7,346 @@
 <meta name="description" content="YouTube-to-revenue strategy cases. B2B, educational, and expert-niche channels.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#070b14">
+<meta name="theme-color" content="#060a12">
 <meta name="color-scheme" content="dark">
 <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --font-display:'Switzer',sans-serif;--font-body:'Satoshi',sans-serif;--font-mono:'JetBrains Mono',monospace;
-  --bg:#070b14;--bg-card:#0f1628;--bg-surface:#111827;--bg-elevated:#182036;
-  --text:#eaeff6;--text-2:#b0bdd0;--text-3:#8494ad;--text-4:#5e7089;
-  --blue:#3b82f6;--blue-l:#60a5fa;--blue-d:rgba(59,130,246,.07);
-  --green:#22c55e;--green-d:rgba(34,197,94,.08);
-  --red:#ef4444;--red-d:rgba(239,68,68,.08);
-  --ease:cubic-bezier(.16,1,.3,1);
+  --fd:'Switzer',sans-serif;--fb:'Satoshi',sans-serif;--fm:'JetBrains Mono',monospace;
+  --bg:#060a12;--bgc:#0e1623;--bgs:#0f1821;--bge:#162030;
+  --t:#f1f5f9;--t2:#b0bec5;--t3:#8899aa;--t4:#6b7e92;
+  --b:#3b82f6;--bl:#60a5fa;--bd:rgba(59,130,246,.07);
+  --g:#22c55e;--gd:rgba(34,197,94,.08);
+  --r:#ef4444;--rd:rgba(239,68,68,.08);
+  --e:cubic-bezier(.16,1,.3,1);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:var(--font-body);font-weight:400;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;font-size:16px}
-::selection{background:var(--blue);color:#fff}
-a{color:var(--blue-l);text-decoration:none;transition:color .2s}
-a:hover{color:#fff}
-a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+body{font-family:var(--fb);font-weight:400;background:var(--bg);color:var(--t);line-height:1.7;overflow-x:hidden;font-size:16px}
+::selection{background:var(--b);color:#fff}
+a{color:var(--bl);text-decoration:none;transition:color .2s}a:hover{color:#fff}
+a:focus-visible{outline:2px solid var(--b);outline-offset:3px}
 p{max-width:66ch}
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.015;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.reveal.v{opacity:1;transform:translateY(0)}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+/* Reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--e),transform .9s var(--e)}
+.rv.v{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.bar-f,.tl-fill-d,.tl-fill-g,.tl-dot,.fn-step,.cc-col{opacity:1!important;transform:none!important;width:var(--w)!important}}
 
-.ctn{max-width:1100px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem)}
+.ct{max-width:1100px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem)}
 section{padding:clamp(5rem,12vw,9rem) 0}
 
 /* ═══ HERO ═══ */
 .hero{min-height:85vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;padding:5rem 0}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 20%,rgba(59,130,246,.06) 0%,transparent 55%);pointer-events:none}
-.hero-c{position:relative;z-index:1;max-width:820px}
-.hero-badge{display:inline-block;padding:.35rem 1rem;background:var(--blue-d);border:1px solid rgba(59,130,246,.12);font-family:var(--font-mono);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-l);margin-bottom:2rem;opacity:0;animation:fadeIn .8s var(--ease) .2s forwards}
-.hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.08;letter-spacing:-.035em;margin-bottom:1.5rem;opacity:0;animation:fadeUp 1s var(--ease) .35s forwards}
-.hero h1 em{font-style:normal;color:var(--blue-l)}
-.hero-sub{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--text-2);line-height:1.7;margin:0 auto 2.5rem;max-width:560px;opacity:0;animation:fadeUp 1s var(--ease) .5s forwards}
-.hero-nums{display:flex;justify-content:center;gap:clamp(2rem,5vw,4rem);flex-wrap:wrap;margin-bottom:2.5rem;opacity:0;animation:fadeUp 1s var(--ease) .65s forwards}
-.hero-n{text-align:center}
-.hero-n b{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.5vw,3.2rem);color:#fff;letter-spacing:-.03em;display:block}
-.hero-n small{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-4);display:block;margin-top:.15rem}
-.hero-cta{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-display);font-size:.82rem;font-weight:500;color:#fff;background:var(--blue);padding:.75rem 1.8rem;transition:all .3s;opacity:0;animation:fadeUp 1s var(--ease) .8s forwards}
-.hero-cta:hover{background:var(--blue-l);color:#fff;transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,.2)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 15%,rgba(59,130,246,.05) 0%,transparent 55%);pointer-events:none}
+.hc{position:relative;z-index:1;max-width:820px}
+.hbadge{display:inline-block;padding:.35rem 1rem;background:var(--bd);border:1px solid rgba(59,130,246,.12);font-family:var(--fm);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bl);margin-bottom:2rem;opacity:0;animation:fi .8s var(--e) .2s forwards}
+.hero h1{font-family:var(--fd);font-weight:700;font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.08;letter-spacing:-.035em;margin-bottom:1.5rem;opacity:0;animation:fu 1s var(--e) .35s forwards}
+.hero h1 em{font-style:normal;color:var(--bl)}
+.hsub{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--t2);line-height:1.7;margin:0 auto 2.5rem;max-width:560px;opacity:0;animation:fu 1s var(--e) .5s forwards}
+.hnums{display:flex;justify-content:center;gap:clamp(2rem,5vw,4rem);flex-wrap:wrap;margin-bottom:2.5rem;opacity:0;animation:fu 1s var(--e) .65s forwards}
+.hn{text-align:center}
+.hn b{font-family:var(--fd);font-weight:700;font-size:clamp(2rem,4.5vw,3.2rem);color:#fff;letter-spacing:-.03em;display:block;font-variant-numeric:tabular-nums}
+.hn small{font-family:var(--fm);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--t4);display:block;margin-top:.15rem}
+.hcta{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fd);font-size:.82rem;font-weight:500;color:#fff;background:var(--b);padding:.75rem 1.8rem;transition:all .3s;opacity:0;animation:fu 1s var(--e) .8s forwards}
+.hcta:hover{background:var(--bl);color:#fff;transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,.2)}
+@keyframes fi{to{opacity:1}}
+@keyframes fu{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
 
-@keyframes fadeIn{to{opacity:1}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+/* ═══ SECTION ═══ */
+.stag{font-family:var(--fm);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bl);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
+.stag::before{content:'';width:24px;height:1px;background:var(--b)}
+.sh{font-family:var(--fd);font-weight:700;font-size:clamp(2rem,4.5vw,3rem);letter-spacing:-.035em;line-height:1.08;margin-bottom:.8rem}
+.si{font-size:clamp(.95rem,1.4vw,1.08rem);color:var(--t2);max-width:620px;margin-bottom:clamp(2.5rem,5vw,4rem)}
 
-/* ═══ SECTION HEADERS ═══ */
-.stag{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-l);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
-.stag::before{content:'';width:24px;height:1px;background:var(--blue)}
-.stitle{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.5vw,3rem);letter-spacing:-.035em;line-height:1.08;margin-bottom:.8rem}
-.sintro{font-size:clamp(.95rem,1.4vw,1.08rem);color:var(--text-2);max-width:620px;margin-bottom:clamp(2.5rem,5vw,4rem)}
+/* ═══ CARDS ═══ */
+.cases{display:flex;flex-direction:column;gap:clamp(2.5rem,5vw,3.5rem)}
+.cd{background:var(--bgc);border:none;border-top:1px solid rgba(241,245,249,.06);padding:clamp(2rem,4vw,3.5rem);position:relative;overflow:hidden;transition:box-shadow .4s,transform .15s;box-shadow:0 1px 3px rgba(0,0,0,.4),0 8px 32px rgba(0,0,0,.2)}
+.cd:hover{box-shadow:0 2px 6px rgba(0,0,0,.5),0 16px 48px rgba(0,0,0,.3)}
+.cd:active{transform:scale(.998)}
 
-/* ═══ CASE CARDS ═══ */
-.cases{display:flex;flex-direction:column;gap:clamp(2rem,4vw,3rem)}
-.card{background:var(--bg-card);border:1px solid rgba(148,163,184,.05);padding:clamp(2rem,4vw,3.5rem);position:relative;overflow:hidden;transition:border-color .4s,box-shadow .4s}
-.card:hover{border-color:rgba(59,130,246,.12);box-shadow:0 12px 40px rgba(0,0,0,.25)}
-.card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--blue);transition:width .4s var(--ease)}
-.card:hover::before{width:5px}
+/* Client label — pill style */
+.cl{font-family:var(--fd);font-size:.82rem;font-weight:600;letter-spacing:.02em;color:var(--t);background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);padding:.25rem .8rem;border-radius:3px;display:inline-block;margin-bottom:.5rem}
+.cp{font-family:var(--fm);font-size:.62rem;color:var(--t3);letter-spacing:.1em;margin-bottom:1.5rem;display:block}
+.ch{font-family:var(--fd);font-weight:700;font-size:clamp(1.4rem,2.8vw,2rem);letter-spacing:-.025em;line-height:1.2;color:#fff;margin-bottom:1.5rem}
+.cpr{font-size:1rem;color:var(--t2);line-height:1.75;margin-bottom:1.2rem;padding-left:1.2rem;border-left:2px solid rgba(148,163,184,.08)}
+.ca{font-size:.95rem;color:var(--t3);line-height:1.75;margin-bottom:2rem}
 
-/* Card header — client type prominent */
-.card-type{font-family:var(--font-display);font-weight:600;font-size:clamp(1.1rem,2vw,1.4rem);color:var(--blue-l);margin-bottom:.2rem;letter-spacing:-.01em}
-.card-period{font-family:var(--font-mono);font-size:.6rem;color:var(--text-4);letter-spacing:.1em;margin-bottom:1.2rem}
-.card-hl{font-family:var(--font-display);font-weight:700;font-size:clamp(1.4rem,2.8vw,2rem);letter-spacing:-.025em;line-height:1.2;color:#fff;margin-bottom:1.5rem}
+/* Featured card */
+.cf{border-top-color:rgba(59,130,246,.12);background:linear-gradient(135deg,var(--bgc) 0%,rgba(59,130,246,.02) 100%)}
+.cf::before{content:'';position:absolute;top:0;left:0;width:4px;height:70%;background:linear-gradient(to bottom,var(--b),var(--g),transparent)}
+.cf .cl{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(34,197,94,.1));border-color:rgba(59,130,246,.3)}
+.cf .ch{font-size:clamp(1.6rem,3vw,2.4rem)}
 
-.card-problem{font-size:.95rem;color:var(--text-2);line-height:1.7;margin-bottom:1.2rem;padding-left:1.2rem;border-left:2px solid rgba(148,163,184,.1)}
-.card-approach{font-size:.9rem;color:var(--text-3);line-height:1.7;margin-bottom:2rem}
+/* ═══ GROWTH TIMELINE (Hostinger) ═══ */
+.timeline{position:relative;height:100px;margin:2rem 0;overflow:visible}
+.tl-track{position:absolute;top:50%;left:5%;right:5%;height:3px;background:rgba(241,245,249,.05);transform:translateY(-50%);border-radius:2px}
+.tl-fill-d,.tl-fill-g{position:absolute;top:0;height:100%;border-radius:2px;width:0;transition:width 1.2s var(--e)}
+.tl-fill-d{left:0;background:var(--r)}
+.tl-fill-g{left:45%;background:var(--g)}
+.tl-an .tl-fill-d{width:42%}
+.tl-an .tl-fill-g{width:55%;transition-delay:.6s}
+.tl-dot{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;border:2px solid var(--bgc);transform:translate(-50%,-50%) scale(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.tl-an .tl-dot{transform:translate(-50%,-50%) scale(1)}
+.tl-d1{left:5%;background:var(--r)}
+.tl-d2{left:48%;background:var(--b);width:16px;height:16px;box-shadow:0 0 0 4px rgba(59,130,246,.2);transition-delay:.5s}
+.tl-d3{left:95%;background:var(--g);transition-delay:1s}
+.tl-d3::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(34,197,94,.3);animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.2);opacity:0}}
+.tl-lb{position:absolute;font-family:var(--fm);font-size:.58rem;white-space:nowrap;text-align:center;left:50%;transform:translateX(-50%);letter-spacing:.05em}
+.tl-lb.above{bottom:calc(100% + 8px)}
+.tl-lb.below{top:calc(100% + 8px)}
+.tl-lb.red{color:var(--r);font-weight:600}
+.tl-lb.blue{color:var(--bl);font-weight:700}
+.tl-lb.green{color:var(--g);font-weight:700}
 
-/* ═══ ANIMATED METRIC BARS ═══ */
-.bar-chart{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem}
-.bar-row{display:flex;flex-direction:column;gap:.25rem}
-.bar-header{display:flex;justify-content:space-between;align-items:baseline}
-.bar-label{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}
-.bar-value{font-family:var(--font-display);font-weight:700;font-size:.9rem;color:var(--green)}
-.bar-track{height:8px;background:rgba(148,163,184,.06);position:relative;overflow:hidden;border-radius:4px}
-.bar-fill{height:100%;border-radius:4px;position:absolute;left:0;top:0;width:0;transition:width 1.2s var(--ease)}
-.bar-fill.green{background:linear-gradient(90deg,rgba(34,197,94,.6),var(--green))}
-.bar-fill.blue{background:linear-gradient(90deg,rgba(59,130,246,.6),var(--blue))}
-.bar-fill.dim{background:rgba(148,163,184,.15)}
-.bar-row.animated .bar-fill{width:var(--w)}
+/* ═══ PILLARS ═══ */
+.pls{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(148,163,184,.04);margin:1.5rem 0}
+.pl{background:var(--bgc);padding:1.2rem;text-align:center;transition:transform .25s var(--e)}
+.cd:hover .pl:nth-child(1){transform:translateY(-2px)}
+.cd:hover .pl:nth-child(2){transform:translateY(-2px);transition-delay:60ms}
+.cd:hover .pl:nth-child(3){transform:translateY(-2px);transition-delay:120ms}
+.pl b{font-family:var(--fd);font-weight:700;font-size:1.8rem;color:var(--bl);display:block;letter-spacing:-.03em}
+.pl small{font-family:var(--fm);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);display:block;margin-top:.25rem}
+
+/* ═══ ANIMATED BARS ═══ */
+.bars{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem}
+.br{display:flex;flex-direction:column;gap:.3rem}
+.br-h{display:flex;justify-content:space-between;align-items:baseline}
+.br-l{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3)}
+.br-v{font-family:var(--fd);font-weight:700;font-size:.9rem;color:var(--g)}
+.br-t{height:8px;background:rgba(148,163,184,.05);border-radius:4px;position:relative;overflow:hidden}
+.bar-f{height:100%;border-radius:4px;position:absolute;left:0;top:0;width:0;transition:width 1.2s var(--e)}
+.bar-f.gn{background:linear-gradient(90deg,rgba(34,197,94,.5),var(--g))}
+.bar-f.bl{background:linear-gradient(90deg,rgba(59,130,246,.5),var(--b))}
+.bar-f.dm{background:rgba(148,163,184,.12)}
+.br.an .bar-f{width:var(--w)}
 
 /* ═══ METRICS GRID ═══ */
-.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:rgba(148,163,184,.05);border:1px solid rgba(148,163,184,.05);margin-bottom:1.5rem}
-.mg{background:var(--bg-card);padding:1.2rem;text-align:center}
-.mg b{font-family:var(--font-display);font-weight:700;font-size:clamp(1.4rem,2.8vw,2rem);color:var(--green);letter-spacing:-.02em;display:block}
-.mg small{font-family:var(--font-mono);font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-4);display:block;margin-top:.3rem}
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:rgba(148,163,184,.04);border:1px solid rgba(148,163,184,.04);margin-bottom:1.5rem}
+.mc{background:var(--bgc);padding:1.2rem;text-align:center;transition:background .2s,transform .2s}
+.mc:hover{background:var(--bge);transform:translateY(-2px)}
+.mc b{font-family:var(--fd);font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.02em;display:block;font-variant-numeric:tabular-nums}
+.mc b.pos{color:var(--g)}
+.mc b.wh{color:#e2e8f0}
+.mc small{font-family:var(--fm);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;color:var(--t4);display:block;margin-top:.3rem}
 
-/* Counter animation */
-.counter{display:inline-block}
+/* ═══ BEFORE/AFTER ═══ */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(148,163,184,.04);margin-bottom:1.5rem}
+.cmp-c{padding:1.5rem;text-align:center}
+.cmp-c.bf{background:var(--rd)}
+.cmp-c.af{background:var(--gd)}
+.cmp-c h6{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.6rem}
+.cmp-c.bf h6{color:var(--r)}
+.cmp-c.af h6{color:var(--g)}
+.cmp-c b{font-family:var(--fd);font-weight:700;font-size:1.5rem;color:#fff;display:block}
+.cmp-c small{font-size:.78rem;color:var(--t3);display:block;margin-top:.3rem}
 
-/* ═══ STANDOUT VIDEO ═══ */
-.standout{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;background:var(--blue-d);border-left:2px solid var(--blue);transition:background .3s}
-.standout:hover{background:rgba(59,130,246,.1)}
-.standout-play{width:36px;height:36px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s}
-.standout:hover .standout-play{transform:scale(1.1)}
-.standout-play::after{content:'';border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
-.standout-text h5{font-family:var(--font-display);font-weight:500;font-size:.9rem;color:#fff;margin-bottom:.2rem}
-.standout-text p{font-family:var(--font-mono);font-size:.65rem;color:var(--blue-l);letter-spacing:.05em}
+/* ═══ STANDOUT ═══ */
+.so{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;background:var(--bd);border-left:2px solid var(--b);transition:background .25s}
+.so:hover{background:rgba(59,130,246,.1)}
+.so-p{width:36px;height:36px;border-radius:50%;background:var(--b);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s}
+.so:hover .so-p{transform:scale(1.1)}
+.so-p::after{content:'';border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
+.so h5{font-family:var(--fd);font-weight:500;font-size:.9rem;color:#fff;margin-bottom:.2rem}
+.so p{font-family:var(--fm);font-size:.65rem;color:var(--bl);letter-spacing:.05em}
 
-/* ═══ FEATURED CARD ═══ */
-.card-feat{border-color:rgba(59,130,246,.1);background:linear-gradient(135deg,var(--bg-card) 0%,rgba(59,130,246,.03) 100%)}
-.card-feat::before{width:4px;background:linear-gradient(to bottom,var(--blue),var(--green))}
-.card-feat:hover::before{width:6px}
-.card-feat .card-hl{font-size:clamp(1.6rem,3vw,2.4rem)}
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(148,163,184,.05);margin:1.5rem 0}
-.pil{background:var(--bg-card);padding:1.2rem;text-align:center;transition:background .3s}
-.pil:hover{background:var(--bg-elevated)}
-.pil b{font-family:var(--font-display);font-weight:700;font-size:1.6rem;color:var(--blue-l);display:block}
-.pil small{font-family:var(--font-mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4);display:block;margin-top:.25rem}
+/* ═══ TRACK ═══ */
+.ts{background:var(--bgs);box-shadow:inset 0 1px 0 rgba(59,130,246,.06)}
+.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(148,163,184,.04);border:1px solid rgba(148,163,184,.04)}
+.ti{background:var(--bgs);padding:clamp(1.5rem,3vw,2.5rem)}
+.ti h4{font-family:var(--fd);font-weight:600;font-size:1.05rem}
+.ti .yr{font-family:var(--fm);font-size:.55rem;color:var(--t4);letter-spacing:.1em}
+.ti .th{font-family:var(--fd);font-weight:700;font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--g);letter-spacing:-.02em;margin:.6rem 0;border-bottom:1px solid rgba(34,197,94,.15);padding-bottom:.4rem;display:inline-block}
+.ti ul{list-style:none}
+.ti li{font-size:.87rem;color:var(--t2);padding:.3rem 0;border-bottom:1px solid rgba(148,163,184,.03);line-height:1.5}
+.ti li:last-child{border:none}
+.tq{background:var(--bd);border-left:2px solid var(--b);padding:1.2rem;margin-top:1.2rem;font-style:italic;font-size:.88rem;color:var(--t2);line-height:1.6}
+.tq cite{display:block;font-style:normal;font-family:var(--fm);font-size:.55rem;color:var(--bl);letter-spacing:.1em;text-transform:uppercase;margin-top:.6rem}
 
-/* ═══ BEFORE / AFTER COMPARISON ═══ */
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(148,163,184,.05);margin-bottom:1.5rem}
-.compare-col{padding:1.5rem;text-align:center}
-.compare-col.before{background:var(--red-d)}
-.compare-col.after{background:var(--green-d)}
-.compare-col h6{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.6rem}
-.compare-col.before h6{color:var(--red)}
-.compare-col.after h6{color:var(--green)}
-.compare-col b{font-family:var(--font-display);font-weight:700;font-size:1.5rem;color:#fff;display:block}
-.compare-col small{font-size:.75rem;color:var(--text-3);display:block;margin-top:.3rem}
-
-/* ═══ TRACK RECORD ═══ */
-.track-s{background:var(--bg-surface)}
-.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(148,163,184,.05);border:1px solid rgba(148,163,184,.05)}
-.titem{background:var(--bg-surface);padding:clamp(1.5rem,3vw,2.5rem)}
-.titem h4{font-family:var(--font-display);font-weight:600;font-size:1.05rem}
-.titem .years{font-family:var(--font-mono);font-size:.55rem;color:var(--text-4);letter-spacing:.1em}
-.titem .thl{font-family:var(--font-display);font-weight:700;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--green);letter-spacing:-.02em;margin:.6rem 0}
-.titem ul{list-style:none}
-.titem li{font-size:.82rem;color:var(--text-2);padding:.3rem 0;border-bottom:1px solid rgba(148,163,184,.04);line-height:1.5}
-.titem li:last-child{border:none}
-.tquote{background:var(--blue-d);border-left:2px solid var(--blue);padding:1.2rem;margin-top:1.2rem;font-style:italic;font-size:.85rem;color:var(--text-2);line-height:1.6}
-.tquote cite{display:block;font-style:normal;font-family:var(--font-mono);font-size:.55rem;color:var(--blue-l);letter-spacing:.1em;text-transform:uppercase;margin-top:.6rem}
-
-/* ═══ WHAT I BUILD ═══ */
-.build-s{background:var(--bg)}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
-.bcard{background:var(--bg-card);border:1px solid rgba(148,163,184,.05);padding:1.5rem;transition:border-color .3s,transform .3s}
-.bcard:hover{border-color:rgba(59,130,246,.12);transform:translateY(-4px)}
-.bcard h4{font-family:var(--font-display);font-weight:600;font-size:.95rem;color:#fff;margin-bottom:.5rem}
-.bcard p{font-size:.82rem;color:var(--text-3);line-height:1.6}
+/* ═══ BUILD ═══ */
+.bs{background:var(--bg)}
+.bg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.bc{background:var(--bgc);border:1px solid rgba(148,163,184,.04);padding:1.5rem;transition:border-color .3s,transform .3s}
+.bc:hover{border-color:rgba(59,130,246,.1);transform:translateY(-4px)}
+.bc h4{font-family:var(--fd);font-weight:600;font-size:.95rem;color:#fff;margin-bottom:.5rem}
+.bc p{font-size:.85rem;color:var(--t3);line-height:1.6}
 
 /* ═══ CTA ═══ */
-.cta-s{background:var(--bg-surface);text-align:center;padding:clamp(4rem,8vw,7rem) 0;position:relative}
-.cta-s::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
-.cta-s h2{font-family:var(--font-display);font-weight:600;font-size:clamp(2rem,4.5vw,3rem);letter-spacing:-.02em;margin-bottom:.8rem}
-.cta-s p{color:var(--text-2);margin:0 auto 2rem}
-.cta-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
-.cbtn{font-family:var(--font-display);font-size:.82rem;font-weight:500;padding:.75rem 1.5rem;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
-.cbtn.pri{background:var(--blue);color:#fff}
-.cbtn.pri:hover{background:var(--blue-l);color:#fff;transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,.2)}
-.cbtn.gho{border:1px solid rgba(148,163,184,.12);color:var(--text-2)}
-.cbtn.gho:hover{border-color:var(--blue);color:var(--blue-l)}
+.cs{background:var(--bgs);text-align:center;padding:clamp(4rem,8vw,7rem) 0;position:relative}
+.cs::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--b),transparent)}
+.cs h2{font-family:var(--fd);font-weight:600;font-size:clamp(2rem,4.5vw,3rem);letter-spacing:-.02em;margin-bottom:.8rem}
+.cs>p{color:var(--t2);margin:0 auto 2rem}
+.cl2{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.cb{font-family:var(--fd);font-size:.82rem;font-weight:500;padding:.75rem 1.5rem;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.cb.pr{background:var(--b);color:#fff}
+.cb.pr:hover{background:var(--bl);color:#fff;transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,.2)}
+.cb.gh{border:1px solid rgba(148,163,184,.1);color:var(--t2)}
+.cb.gh:hover{border-color:var(--b);color:var(--bl)}
 
-.footer{padding:1.5rem 0;border-top:1px solid rgba(148,163,184,.04);text-align:center}
-.footer p{font-family:var(--font-mono);font-size:.5rem;color:var(--text-4);letter-spacing:.12em}
+.ft{padding:1.5rem 0;border-top:1px solid rgba(148,163,184,.03);text-align:center}
+.ft p{font-family:var(--fm);font-size:.5rem;color:var(--t4);letter-spacing:.12em}
 
 /* ═══ MOBILE ═══ */
 @media(max-width:640px){
-  .pillars,.compare{grid-template-columns:1fr}
+  .pls,.cmp{grid-template-columns:1fr}
   .hero h1{font-size:clamp(1.9rem,7vw,2.6rem)}
-  .hero-nums{gap:1.2rem}
-  .card-hl{font-size:clamp(1.2rem,5vw,1.6rem)}
-  .stitle{font-size:clamp(1.6rem,6vw,2.2rem)}
-  .bgrid{grid-template-columns:1fr}
-  .tgrid{grid-template-columns:1fr}
-  .mgrid{grid-template-columns:repeat(2,1fr)}
-  .cta-links{flex-direction:column;align-items:center}
-  .cbtn{width:100%;justify-content:center}
+  .hnums{gap:1.2rem}
+  .ch{font-size:clamp(1.2rem,5vw,1.6rem)}
+  .sh{font-size:clamp(1.6rem,6vw,2.2rem)}
+  .bg,.tg{grid-template-columns:1fr}
+  .mg{grid-template-columns:repeat(2,1fr)}
+  .cl2{flex-direction:column;align-items:center}
+  .cb{width:100%;justify-content:center}
+  .timeline{height:80px}
 }
+@media(min-width:1024px){.cd{padding:3.5rem}.cases{gap:3.5rem}}
 </style>
 </head>
 <body>
 
 <!-- HERO -->
 <section class="hero">
-<div class="ctn">
-<div class="hero-c">
-  <div class="hero-badge">YouTube Strategy Cases</div>
+<div class="ct">
+<div class="hc">
+  <div class="hbadge">YouTube Strategy Cases</div>
   <h1>Channels that generate <em>revenue</em>, not just views.</h1>
-  <p class="hero-sub">B2B, educational, and expert-niche YouTube strategy. Channel audits to content architecture to revenue attribution.</p>
-  <div class="hero-nums">
-    <div class="hero-n"><b class="counter" data-to="50" data-suffix="+">0</b><small>Channels built</small></div>
-    <div class="hero-n"><b class="counter" data-to="5" data-suffix="B+">0</b><small>Views</small></div>
-    <div class="hero-n"><b class="counter" data-to="15">0</b><small>Languages</small></div>
-    <div class="hero-n"><b>$4M+</b><small>/month at peak</small></div>
+  <p class="hsub">B2B, educational, and expert-niche YouTube strategy. Channel audits to content architecture to revenue attribution.</p>
+  <div class="hnums">
+    <div class="hn"><b class="ctr" data-to="50" data-s="+">0</b><small>Channels built</small></div>
+    <div class="hn"><b class="ctr" data-to="5" data-s="B+">0</b><small>Views</small></div>
+    <div class="hn"><b class="ctr" data-to="15">0</b><small>Languages</small></div>
+    <div class="hn"><b>$4M+</b><small>/month at peak</small></div>
   </div>
-  <a href="#cases" class="hero-cta">See the work &darr;</a>
+  <a href="#cases" class="hcta">See the work &darr;</a>
 </div>
 </div>
 </section>
 
 <!-- CASES -->
 <section id="cases">
-<div class="ctn">
-  <div class="stag reveal">Strategy Cases</div>
-  <h2 class="stitle reveal">Five engagements. One strategist.</h2>
-  <p class="sintro reveal">All produced at Hype On Media, where I lead YouTube growth strategy. Client names anonymized where required.</p>
+<div class="ct">
+  <div class="stag rv">Strategy Cases</div>
+  <h2 class="sh rv">Five engagements. One strategist.</h2>
+  <p class="si rv">All produced at Hype On Media, where I lead YouTube growth strategy. Client names anonymized where required.</p>
 
   <div class="cases">
 
-    <!-- FEATURED: Hostinger -->
-    <div class="card card-feat reveal">
-      <div class="card-type">B2B SaaS &middot; Web Hosting Platform</div>
-      <div class="card-period">2025 &middot; Ongoing engagement</div>
-      <div class="card-hl">Declining 25% YoY. Repositioned to business-opportunity content. Now tracking 631K views/month.</div>
-      <div class="card-problem">A web hosting platform with 29 million customers and 318K YouTube subscribers was losing ground. Their channel published technical tutorials&mdash;useful content that nobody searched YouTube for. The audience that buys hosting searches for business opportunities, not setup guides.</div>
-      <div class="card-approach">Redesigned the entire content architecture around a 3-pillar system. Delivered a 127-video quarterly plan, competitive teardowns of 3 rival channels, a team development roadmap, and an international scaling framework for 4+ markets.</div>
-      <div class="pillars">
-        <div class="pil"><b>60%</b><small>Business Opportunities</small></div>
-        <div class="pil"><b>25%</b><small>Infrastructure Intel</small></div>
-        <div class="pil"><b>15%</b><small>Authority &amp; Research</small></div>
+    <!-- ══ FEATURED: Hostinger ══ -->
+    <div class="cd cf rv">
+      <div class="cl">B2B SaaS &middot; Web Hosting Platform</div>
+      <div class="cp">2025 &middot; Ongoing engagement</div>
+      <div class="ch">Declining 25% YoY. Repositioned to business-opportunity content. Now tracking 631K views/month.</div>
+      <div class="cpr">A web hosting platform with 29 million customers and 318K YouTube subscribers was losing ground. Their channel published technical tutorials&mdash;useful content nobody searched YouTube for. The audience that buys hosting searches for business opportunities, not setup guides.</div>
+      <div class="ca">Redesigned the entire content architecture around a 3-pillar system. Delivered a 127-video quarterly plan, competitive teardowns of 3 rival channels, a team development roadmap, and an international scaling framework for 4+ markets.</div>
+
+      <!-- Growth Timeline -->
+      <div class="timeline" id="tl1">
+        <div class="tl-track">
+          <div class="tl-fill-d"></div>
+          <div class="tl-fill-g"></div>
+        </div>
+        <div class="tl-dot tl-d1"><span class="tl-lb above red">-25% YoY</span></div>
+        <div class="tl-dot tl-d2"><span class="tl-lb above blue">Strategy<br>deployed</span></div>
+        <div class="tl-dot tl-d3"><span class="tl-lb above green">631K/mo</span><span class="tl-lb below green">&uarr; Growing</span></div>
       </div>
-      <div class="bar-chart">
-        <div class="bar-row" data-animate><div class="bar-header"><span class="bar-label">Monthly Views</span><span class="bar-value">631K (target: 650-720K)</span></div><div class="bar-track"><div class="bar-fill dim" style="--w:40%"></div><div class="bar-fill green" style="--w:88%"></div></div></div>
-        <div class="bar-row" data-animate><div class="bar-header"><span class="bar-label">YoY Decline</span><span class="bar-value">Reversed</span></div><div class="bar-track"><div class="bar-fill blue" style="--w:100%"></div></div></div>
+
+      <div class="pls">
+        <div class="pl"><b>60%</b><small>Business Opportunities</small></div>
+        <div class="pl"><b>25%</b><small>Infrastructure Intel</small></div>
+        <div class="pl"><b>15%</b><small>Authority &amp; Research</small></div>
       </div>
-      <div class="standout">
-        <div class="standout-play"></div>
-        <div class="standout-text"><h5>Full strategy document available on request</h5><p>3-pillar system &middot; Competitive teardowns &middot; Team roadmap &middot; International scaling</p></div>
-      </div>
+      <div class="so"><div class="so-p"></div><div><h5>Full strategy document available on request</h5><p>3-pillar system &middot; Competitive teardowns &middot; Team roadmap &middot; International scaling</p></div></div>
     </div>
 
-    <!-- AI SaaS -->
-    <div class="card reveal">
-      <div class="card-type">B2B SaaS &middot; AI Workflow Automation</div>
-      <div class="card-period">2024 &middot; 6-month engagement</div>
-      <div class="card-hl">From product demos nobody watched to $380K in pipeline. 1.2K to 12K subscribers.</div>
-      <div class="card-problem">An AI workflow automation platform had 1.2K subscribers posting product walkthroughs averaging 200 views. The content showed features. The audience wanted outcomes&mdash;how to replace manual work, save hours, reduce headcount costs.</div>
-      <div class="card-approach">Repositioned from feature demos to automation use-case content. Built a content calendar around pain points the sales team heard daily. Each video ended with a clear path to a product demo.</div>
-      <div class="bar-chart">
-        <div class="bar-row" data-animate><div class="bar-header"><span class="bar-label">Subscribers</span><span class="bar-value">1.2K &rarr; 12K</span></div><div class="bar-track"><div class="bar-fill dim" style="--w:10%"></div><div class="bar-fill green" style="--w:85%"></div></div></div>
-        <div class="bar-row" data-animate><div class="bar-header"><span class="bar-label">Avg views/video</span><span class="bar-value">200 &rarr; 4,200</span></div><div class="bar-track"><div class="bar-fill dim" style="--w:5%"></div><div class="bar-fill blue" style="--w:78%"></div></div></div>
-        <div class="bar-row" data-animate><div class="bar-header"><span class="bar-label">Qualified demos/month</span><span class="bar-value">0 &rarr; 85</span></div><div class="bar-track"><div class="bar-fill green" style="--w:70%"></div></div></div>
+    <!-- ══ AI SaaS ══ -->
+    <div class="cd rv">
+      <div class="cl">B2B SaaS &middot; AI Workflow Automation</div>
+      <div class="cp">2024 &middot; 6-month engagement</div>
+      <div class="ch">From product demos nobody watched to $380K in pipeline. 1.2K to 12K subscribers.</div>
+      <div class="cpr">An AI workflow automation platform had 1.2K subscribers posting product walkthroughs averaging 200 views. The content showed features. The audience wanted outcomes&mdash;how to replace manual work, save hours, reduce headcount costs.</div>
+      <div class="ca">Repositioned from feature demos to automation use-case content. Built a content calendar around pain points the sales team heard daily. Each video ended with a clear path to a product demo.</div>
+      <div class="bars">
+        <div class="br" data-a><div class="br-h"><span class="br-l">Subscribers</span><span class="br-v">1.2K &rarr; 12K</span></div><div class="br-t"><div class="bar-f dm" style="--w:10%"></div><div class="bar-f gn" style="--w:85%"></div></div></div>
+        <div class="br" data-a><div class="br-h"><span class="br-l">Avg views/video</span><span class="br-v">200 &rarr; 4,200</span></div><div class="br-t"><div class="bar-f dm" style="--w:5%"></div><div class="bar-f bl" style="--w:78%"></div></div></div>
+        <div class="br" data-a><div class="br-h"><span class="br-l">Qualified demos/month</span><span class="br-v">0 &rarr; 85</span></div><div class="br-t"><div class="bar-f gn" style="--w:70%"></div></div></div>
       </div>
-      <div class="mgrid">
-        <div class="mg"><b>$380K</b><small>Pipeline attributed</small></div>
-        <div class="mg"><b>85</b><small>Demos/month</small></div>
-        <div class="mg"><b>21x</b><small>Avg views increase</small></div>
+      <div class="mg">
+        <div class="mc"><b class="pos">$380K</b><small>Pipeline attributed</small></div>
+        <div class="mc"><b class="pos">85</b><small>Demos/month</small></div>
+        <div class="mc"><b class="pos">21x</b><small>Views increase</small></div>
       </div>
-      <div class="standout">
-        <div class="standout-play"></div>
-        <div class="standout-text"><h5>"5 Workflows That Replace a $60K Employee"</h5><p>140K views &middot; Highest-converting video in channel history</p></div>
-      </div>
+      <div class="so"><div class="so-p"></div><div><h5>"5 Workflows That Replace a $60K Employee"</h5><p>140K views &middot; Highest-converting video in channel history</p></div></div>
     </div>
 
-    <!-- Fractional CFO -->
-    <div class="card reveal">
-      <div class="card-type">Professional Services &middot; Fractional CFO</div>
-      <div class="card-period">2024 &middot; 6-month engagement</div>
-      <div class="card-hl">From posting into the void to $216K in retainers and a 4-month waitlist.</div>
-      <div class="card-problem">A fractional CFO with 15 years of experience had been trying YouTube for 8 months. 38 videos, 870 subscribers, one inbound lead who ghosted. Content was technically excellent but felt like a finance lecture&mdash;retention dropped at the 40-second mark.</div>
-      <div class="card-approach">Diagnosed the core problem: content answered questions nobody was searching for. She was making videos for other CFOs, not for the founders who would hire her. Rebuilt strategy around founder anxieties&mdash;cash runway fears, fundraising mistakes, "when to fire your bookkeeper." Created a "founder financial mistakes" series with real anonymized scenarios.</div>
-      <div class="compare">
-        <div class="compare-col before"><h6>Before</h6><b>18%</b><small>Avg retention</small></div>
-        <div class="compare-col after"><h6>After</h6><b>51%</b><small>Avg retention</small></div>
+    <!-- ══ Fractional CFO ══ -->
+    <div class="cd rv">
+      <div class="cl">Professional Services &middot; Fractional CFO</div>
+      <div class="cp">2024 &middot; 6-month engagement</div>
+      <div class="ch">From posting into the void to $216K in retainers and a 4-month waitlist.</div>
+      <div class="cpr">A fractional CFO with 15 years of experience had been trying YouTube for 8 months. 38 videos, 870 subscribers, one inbound lead who ghosted. Content was technically excellent but felt like a finance lecture&mdash;retention dropped at the 40-second mark.</div>
+      <div class="ca">Diagnosed the core problem: content answered questions nobody was searching for. She was making videos for other CFOs, not for the founders who would hire her. Rebuilt strategy around founder anxieties&mdash;cash runway fears, fundraising mistakes, "when to fire your bookkeeper."</div>
+      <div class="cmp">
+        <div class="cmp-c bf"><h6>Before</h6><b>18%</b><small>Avg retention</small></div>
+        <div class="cmp-c af"><h6>After</h6><b>51%</b><small>Avg retention</small></div>
       </div>
-      <div class="mgrid">
-        <div class="mg"><b>4.1K</b><small>Subs (from 870)</small></div>
-        <div class="mg"><b>22</b><small>Calls/month</small></div>
-        <div class="mg"><b>$216K</b><small>Retainers closed</small></div>
+      <div class="mg">
+        <div class="mc"><b class="pos">4.1K</b><small>Subs (from 870)</small></div>
+        <div class="mc"><b class="pos">22</b><small>Calls/month</small></div>
+        <div class="mc"><b class="pos">$216K</b><small>Retainers closed</small></div>
       </div>
-      <div class="standout">
-        <div class="standout-play"></div>
-        <div class="standout-text"><h5>"I Audited a 40-Person Startup's Finances. Here's What Terrified Me."</h5><p>14.7K views &middot; 58% retention &middot; 3 retainer signings from this video</p></div>
-      </div>
+      <div class="so"><div class="so-p"></div><div><h5>"I Audited a 40-Person Startup's Finances. Here's What Terrified Me."</h5><p>14.7K views &middot; 58% retention &middot; 3 retainer signings from this video</p></div></div>
     </div>
 
-    <!-- Real Estate -->
-    <div class="card reveal">
-      <div class="card-type">Real Estate &middot; Luxury Residential &middot; Miami</div>
-      <div class="card-period">2024 &middot; 10-month engagement</div>
-      <div class="card-hl">Zillow spend cut to zero. 3 closings from YouTube&mdash;$2.1M in transactions.</div>
-      <div class="card-problem">A Miami luxury real estate agent spending $8K/month on Zillow leads with diminishing returns. Every lead was cold. Every call started from zero trust. The agent needed a channel where buyers arrived pre-sold.</div>
-      <div class="card-approach">Built YouTube as the primary acquisition channel: hyperlocal neighborhood deep dives, weekly market intelligence, buyer education, and lifestyle/relocation guides. The confession format ("I told my client to wait&mdash;it cost them $40K") outperformed every other title pattern.</div>
-      <div class="compare">
-        <div class="compare-col before"><h6>Before &middot; Zillow</h6><b>$8K/mo</b><small>Cold leads, diminishing returns</small></div>
-        <div class="compare-col after"><h6>After &middot; YouTube</h6><b>$0 spend</b><small>Warm leads, $2.1M closed</small></div>
+    <!-- ══ Real Estate Miami ══ -->
+    <div class="cd rv">
+      <div class="cl">Real Estate &middot; Luxury Residential &middot; Miami</div>
+      <div class="cp">2024 &middot; 10-month engagement</div>
+      <div class="ch">Zillow spend cut to zero. 3 closings from YouTube&mdash;$2.1M in transactions.</div>
+      <div class="cpr">A Miami luxury real estate agent spending $8K/month on Zillow leads with diminishing returns. Every lead was cold. Every call started from zero trust.</div>
+      <div class="ca">Built YouTube as the primary acquisition channel: hyperlocal neighborhood deep dives, weekly market intelligence, buyer education. The confession format ("I told my client to wait&mdash;it cost them $40K") outperformed every other title pattern.</div>
+      <div class="cmp">
+        <div class="cmp-c bf"><h6>Before &middot; Zillow</h6><b>$8K/mo</b><small>Cold leads, declining ROI</small></div>
+        <div class="cmp-c af"><h6>After &middot; YouTube</h6><b>$0 spend</b><small>Warm leads, $2.1M closed</small></div>
       </div>
-      <div class="mgrid">
-        <div class="mg"><b>7.8K</b><small>Subs (from zero)</small></div>
-        <div class="mg"><b>35</b><small>Leads/month</small></div>
-        <div class="mg"><b>$2.1M</b><small>Closed from YT</small></div>
+      <div class="mg">
+        <div class="mc"><b class="pos">7.8K</b><small>Subs (from zero)</small></div>
+        <div class="mc"><b class="pos">35</b><small>Leads/month</small></div>
+        <div class="mc"><b class="pos">$2.1M</b><small>Closed from YT</small></div>
       </div>
-      <div class="standout">
-        <div class="standout-play"></div>
-        <div class="standout-text"><h5>"What $1.5M Gets You in Brickell Right Now"</h5><p>89K views &middot; 3 buyer inquiries directly from this video</p></div>
-      </div>
+      <div class="so"><div class="so-p"></div><div><h5>"What $1.5M Gets You in Brickell Right Now"</h5><p>89K views &middot; 3 buyer inquiries from this video</p></div></div>
     </div>
 
   </div>
 </div>
 </section>
 
-<!-- TRACK RECORD -->
-<section class="track-s">
-<div class="ctn">
-  <div class="stag reveal">Track Record</div>
-  <h2 class="stitle reveal">Before the agency: a decade of building at scale.</h2>
-  <div class="tgrid">
-    <div class="titem reveal">
-      <h4>Bored Panda</h4><div class="years">2019 &mdash; 2023</div>
-      <div class="thl">1 editor &rarr; 50+ channels</div>
+<!-- TRACK -->
+<section class="ts">
+<div class="ct">
+  <div class="stag rv">Track Record</div>
+  <h2 class="sh rv">Before the agency: a decade of building at scale.</h2>
+  <div class="tg">
+    <div class="ti rv">
+      <h4>Bored Panda</h4><div class="yr">2019 &mdash; 2023</div>
+      <div class="th">1 editor &rarr; 50+ channels</div>
       <ul>
         <li>Arrived to one editor using Google Translate. Left with 50+ YouTube channels, 70+ social pages, 15 languages, $400K+/month net.</li>
-        <li>Gotcha!: shaped growth strategy&mdash;3M subs, 2.3B views in 2023, #1 worldwide in video category.</li>
+        <li>Gotcha!: shaped growth strategy&mdash;3M subs, 2.3B views in 2023, #1 worldwide.</li>
         <li>FireSpike: built team and directed production&mdash;Lithuania's first international kids animation. 150M+ views, Silver Play Button.</li>
-        <li>Cut costs 70% via AI restructuring in 2022&mdash;a year before ChatGPT launched.</li>
+        <li>Cut costs 70% via AI restructuring in 2022&mdash;a year before ChatGPT.</li>
       </ul>
-      <div class="tquote">"Julian played a critical role in building our multilingual video division from the ground up. He operated with full ownership, transforming the unit into an independent business stream with its own P&amp;L."<cite>COO, Bored Panda</cite></div>
+      <div class="tq">"Julian played a critical role in building our multilingual video division from the ground up. He operated with full ownership, transforming the unit into an independent business stream with its own P&amp;L."<cite>COO, Bored Panda</cite></div>
     </div>
-    <div class="titem reveal" style="transition-delay:.1s">
-      <h4>TheSoul Publishing</h4><div class="years">2015 &mdash; 2016</div>
-      <div class="thl">$0 &rarr; $2M+/mo</div>
+    <div class="ti rv" style="transition-delay:.1s">
+      <h4>TheSoul Publishing</h4><div class="yr">2015 &mdash; 2016</div>
+      <div class="th">$0 &rarr; $2M+/mo</div>
       <ul>
-        <li>CEO, International Business Unit. Built from zero to $2M+/month in 18 months.</li>
-        <li>Genial.guru: 0 to 15M monthly visitors in 3 months. Surpassed Spanish BuzzFeed in under 6 months.</li>
-        <li>Part of the founding team of 5-Minute Crafts (60M+ subs today). Named Ideas en 5 Minutos.</li>
+        <li>CEO, International Business Unit. $0 to $2M+/month in 18 months.</li>
+        <li>Genial.guru: 0 to 15M visitors in 3 months. Surpassed Spanish BuzzFeed in 6 months.</li>
+        <li>Founding team of 5-Minute Crafts (60M+ subs today). Named Ideas en 5 Minutos.</li>
         <li>Forbes Russia featured for the international expansion.</li>
       </ul>
     </div>
@@ -334,56 +354,50 @@ section{padding:clamp(5rem,12vw,9rem) 0}
 </div>
 </section>
 
-<!-- WHAT I BUILD -->
-<section class="build-s">
-<div class="ctn">
-  <div class="stag reveal">What I Build</div>
-  <h2 class="stitle reveal">Systems that scale YouTube operations.</h2>
-  <p class="sintro reveal">What I'd deploy at a YouTube agency running 30+ client channels.</p>
-  <div class="bgrid">
-    <div class="bcard reveal"><h4>Channel-Level P&L Dashboards</h4><p>Every client channel gets a content-to-revenue scorecard&mdash;median views, leads generated, cash collected per video. Live attribution, not monthly reports.</p></div>
-    <div class="bcard reveal" style="transition-delay:.08s"><h4>Scalable Ideation System</h4><p>AI-powered research pipelines surfacing competitor gaps and high-intent topics. At 100+ videos/month, ideation is a system problem. I've solved it across 50+ channels.</p></div>
-    <div class="bcard reveal" style="transition-delay:.16s"><h4>International Expansion</h4><p>Clients sell globally, publish in English only. I've scaled content across 15 languages with 2-3x ROI on localized versions.</p></div>
-    <div class="bcard reveal" style="transition-delay:.24s"><h4>Kill Discipline</h4><p>75% proven, 25% experimental&mdash;with tracking to know within 2-3 videos if an experiment works, and the discipline to cut it same week.</p></div>
+<!-- BUILD -->
+<section class="bs">
+<div class="ct">
+  <div class="stag rv">What I Build</div>
+  <h2 class="sh rv">Systems that scale YouTube operations.</h2>
+  <p class="si rv">What I'd deploy at a YouTube agency running 30+ client channels.</p>
+  <div class="bg">
+    <div class="bc rv"><h4>Channel-Level P&L Dashboards</h4><p>Every client channel gets a content-to-revenue scorecard&mdash;median views, leads generated, cash collected per video. Live attribution, not monthly reports.</p></div>
+    <div class="bc rv" style="transition-delay:.08s"><h4>Scalable Ideation System</h4><p>AI-powered research pipelines surfacing competitor gaps and high-intent topics. At 100+ videos/month, ideation is a system problem. I've solved it across 50+ channels.</p></div>
+    <div class="bc rv" style="transition-delay:.16s"><h4>International Expansion</h4><p>Clients sell globally, publish in English only. I've scaled content across 15 languages with 2-3x ROI on localized versions.</p></div>
+    <div class="bc rv" style="transition-delay:.24s"><h4>Kill Discipline</h4><p>75% proven, 25% experimental&mdash;with tracking to know within 2-3 videos if an experiment works, and the discipline to cut it same week.</p></div>
   </div>
 </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-s">
-<div class="ctn">
-  <h2 class="reveal">Let's talk.</h2>
-  <p class="reveal">Julian Rinta &middot; Remote&mdash;Dubai, UAE &middot; Spanish, English, French, Russian</p>
-  <div class="cta-links reveal">
-    <a href="https://julianrinta-bit.github.io/portfolio" class="cbtn pri" target="_blank">Full Portfolio</a>
-    <a href="https://linkedin.com/in/julianrinta" class="cbtn gho" target="_blank">LinkedIn</a>
+<section class="cs">
+<div class="ct">
+  <h2 class="rv">Let's talk.</h2>
+  <p class="rv">Julian Rinta &middot; Remote&mdash;Dubai, UAE &middot; Spanish, English, French, Russian</p>
+  <div class="cl2 rv">
+    <a href="https://julianrinta-bit.github.io/portfolio" class="cb pr" target="_blank">Full Portfolio</a>
+    <a href="https://linkedin.com/in/julianrinta" class="cb gh" target="_blank">LinkedIn</a>
   </div>
 </div>
 </section>
 
-<footer class="footer"><p>&copy; 2026 Julian Rinta &middot; Digital Revenue Architect</p></footer>
+<footer class="ft"><p>&copy; 2026 Julian Rinta &middot; Digital Revenue Architect</p></footer>
 
 <script>
-// Scroll reveals
-(function(){const els=document.querySelectorAll('.reveal');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('v'));return}
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
-els.forEach(e=>obs.observe(e))})();
+// Reveals
+(function(){var e=document.querySelectorAll('.rv');if(!('IntersectionObserver' in window)){e.forEach(function(x){x.classList.add('v')});return}var o=new IntersectionObserver(function(t){t.forEach(function(x){if(x.isIntersecting){x.target.classList.add('v');o.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -20px 0px'});e.forEach(function(x){o.observe(x)})})();
 
-// Animated metric bars
-(function(){const bars=document.querySelectorAll('.bar-row[data-animate]');if(!('IntersectionObserver' in window))return;
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('animated');obs.unobserve(e.target)}})},{threshold:.5});
-bars.forEach(b=>obs.observe(b))})();
+// Animated bars
+(function(){var b=document.querySelectorAll('[data-a]');if(!('IntersectionObserver' in window))return;var o=new IntersectionObserver(function(t){t.forEach(function(x){if(x.isIntersecting){x.target.classList.add('an');o.unobserve(x.target)}})},{threshold:.4});b.forEach(function(x){o.observe(x)})})();
 
-// Counter animation on hero numbers
-(function(){const counters=document.querySelectorAll('.counter');if(!('IntersectionObserver' in window))return;
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;obs.unobserve(e.target);
-const el=e.target,to=parseInt(el.dataset.to),sfx=el.dataset.suffix||'',dur=1200,t0=performance.now();
-function step(now){const p=Math.min((now-t0)/dur,1),v=1-Math.pow(1-p,3);el.textContent=Math.round(v*to)+sfx;if(p<1)requestAnimationFrame(step)}
-requestAnimationFrame(step)})},{threshold:.5});
-counters.forEach(c=>obs.observe(c))})();
+// Timeline
+(function(){var t=document.getElementById('tl1');if(!t)return;new IntersectionObserver(function(e){if(e[0].isIntersecting)t.classList.add('tl-an')},{threshold:.3}).observe(t)})();
+
+// Counters
+(function(){var c=document.querySelectorAll('.ctr');if(!('IntersectionObserver' in window))return;var o=new IntersectionObserver(function(t){t.forEach(function(x){if(!x.isIntersecting)return;o.unobserve(x.target);var el=x.target,to=+el.dataset.to,s=el.dataset.s||'',d=1200,t0=performance.now();(function step(n){var p=Math.min((n-t0)/d,1),v=1-Math.pow(1-p,3);el.textContent=Math.round(v*to)+s;if(p<1)requestAnimationFrame(step)})(t0)})},{threshold:.5});c.forEach(function(x){o.observe(x)})})();
 
 // Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(l=>{l.addEventListener('click',e=>{const t=document.querySelector(l.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+document.querySelectorAll('a[href^="#"]').forEach(function(l){l.addEventListener('click',function(e){var t=document.querySelector(l.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
 </script>
 </body>
 </html>
