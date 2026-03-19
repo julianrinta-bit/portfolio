@@ -154,9 +154,9 @@ section{padding:clamp(5rem,12vw,9rem) 0}
 .so p{font-family:var(--fm);font-size:.65rem;color:var(--bl);letter-spacing:.05em}
 
 /* ═══ TRACK ═══ */
-.ts{background:var(--bgs);box-shadow:inset 0 1px 0 rgba(59,130,246,.06)}
+.ts{background:var(--bgs,#0f1821);box-shadow:inset 0 1px 0 rgba(59,130,246,.06)}
 .tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(148,163,184,.04);border:1px solid rgba(148,163,184,.04)}
-.ti{background:var(--bgs);padding:clamp(1.5rem,3vw,2.5rem)}
+.ti{background:var(--bgs,#0f1821);padding:clamp(1.5rem,3vw,2.5rem)}
 .ti h4{font-family:var(--fd);font-weight:600;font-size:1.05rem}
 .ti .yr{font-family:var(--fm);font-size:.55rem;color:var(--t4);letter-spacing:.1em}
 .ti .th{font-family:var(--fd);font-weight:700;font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--g);letter-spacing:-.02em;margin:.6rem 0;border-bottom:1px solid rgba(34,197,94,.15);padding-bottom:.4rem;display:inline-block}
@@ -175,7 +175,8 @@ section{padding:clamp(5rem,12vw,9rem) 0}
 .bc p{font-size:.85rem;color:var(--t3);line-height:1.6}
 
 /* ═══ CTA ═══ */
-.cs{background:var(--bgs);text-align:center;padding:clamp(4rem,8vw,7rem) 0;position:relative}
+.cs{background:var(--bgs,#0f1821);text-align:center;padding:clamp(4rem,8vw,7rem) 0;position:relative}
+.cs p{margin-left:auto;margin-right:auto;text-align:center}
 .cs::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--b),transparent)}
 .cs h2{font-family:var(--fd);font-weight:600;font-size:clamp(2rem,4.5vw,3rem);letter-spacing:-.02em;margin-bottom:.8rem}
 .cs>p{color:var(--t2);margin:0 auto 2rem}
