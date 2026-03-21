@@ -1281,6 +1281,64 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* ============================================================
+   HERO SCROLL HINT
+   ============================================================ */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: clamp(24px, 4vh, 48px);
+  right: clamp(16px, 3vw, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: scrollHintFadeIn var(--duration) var(--ease) 1.4s forwards;
+}
+@keyframes scrollHintFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-scroll-hint__text {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-40);
+  writing-mode: vertical-rl;
+  user-select: none;
+}
+.hero-scroll-hint__line {
+  width: 1px;
+  height: 60px;
+  background: var(--white-20);
+  position: relative;
+  overflow: hidden;
+}
+.hero-scroll-hint__line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  animation: scrollBeacon 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+@keyframes scrollBeacon {
+  0%   { top: -100%; opacity: 1; }
+  60%  { top: 100%;  opacity: 1; }
+  61%  { top: 100%;  opacity: 0; }
+  100% { top: -100%; opacity: 0; }
+}
+@media (max-width: 640px) {
+  .hero-scroll-hint { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-hint { animation: none; opacity: 1; }
+  .hero-scroll-hint__line::after { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -1345,6 +1403,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
       <svg class="badge__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L1 7l11 5 9-4.1V17h2V7L12 2zM5 13.2v4L12 20l7-2.8v-4L12 16l-7-2.8z"/></svg>
       Pr&ecirc;mio Influenciadores Digitais Brazil
     </span>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span class="hero-scroll-hint__text">Scroll</span>
+    <div class="hero-scroll-hint__line"></div>
   </div>
 </section>
 
