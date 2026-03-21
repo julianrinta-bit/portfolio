@@ -4,8 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Julian Rinta — Content Strategist & Revenue Architect</title>
-<meta name="description" content="I build the systems that survive the kill — and the teams that scale them.">
+<title>Julian Rinta — Digital Revenue Architect</title>
+<meta name="description" content="50+ channels. 15 languages. $4M/month. 5B views. Forbes-featured Digital Revenue Architect. I build the systems that survive the kill — and the teams that scale them.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0e0e0e">
+<meta name="color-scheme" content="dark">
 
 <!-- Fonts -->
 <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
@@ -21,6 +24,7 @@
   --surface-2: #1f1f1f;
   --accent: #c8ff2e;
   --accent-dim: rgba(200, 255, 46, .12);
+  --accent-hover: #d8ff60;
   --white: #ffffff;
   --white-60: rgba(255,255,255,.6);
   --white-40: rgba(255,255,255,.4);
@@ -53,6 +57,7 @@ a { color: inherit; text-decoration: none; }
 button { font-family: inherit; border: none; cursor: pointer; background: none; color: inherit; }
 img { max-width: 100%; display: block; }
 ul, ol { list-style: none; }
+::selection { background: var(--accent); color: var(--bg); }
 
 /* ============================================================
    NOISE OVERLAY
@@ -90,7 +95,6 @@ body::before {
   border-color: var(--accent);
   background: rgba(200,255,46,.08);
 }
-
 @media (pointer: coarse) {
   .cursor { display: none; }
 }
@@ -99,32 +103,28 @@ body::before {
    LAYOUT
    ============================================================ */
 .container {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 clamp(20px, 5vw, 64px);
 }
 
-section {
-  position: relative;
-  padding: clamp(80px, 12vw, 160px) 0;
-}
-
 /* ============================================================
-   SECTION NUMBERS (PARALLAX BG)
+   SKIP LINK
    ============================================================ */
-.section-num {
+.skip-link {
   position: absolute;
-  top: -20px;
-  right: clamp(20px, 5vw, 64px);
+  top: -100px;
+  left: 16px;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 8px 16px;
   font-family: var(--font-mono);
-  font-size: clamp(120px, 18vw, 280px);
-  font-weight: 700;
-  color: var(--white-04);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  will-change: transform;
+  font-size: 12px;
+  z-index: 10001;
+  transition: top .3s;
 }
+.skip-link:focus { top: 16px; }
 
 /* ============================================================
    STICKY NAV
@@ -140,775 +140,40 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(14,14,14,.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--white-08);
+  background: rgba(14, 14, 14, .85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
   transform: translateY(-100%);
-  transition: transform .5s var(--ease);
+  transition: transform .45s var(--ease), border-color .3s;
 }
 .nav.visible {
   transform: translateY(0);
+  border-bottom-color: var(--white-08);
 }
 .nav__name {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: -.02em;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -.01em;
   color: var(--white);
 }
 .nav__links {
   display: flex;
   gap: 28px;
+  align-items: center;
 }
 .nav__links a {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--white-60);
-  transition: color .3s var(--ease);
-  position: relative;
-}
-.nav__links a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent);
-  transition: width .3s var(--ease);
+  letter-spacing: .1em;
+  color: var(--white-40);
+  transition: color .3s;
 }
 .nav__links a:hover { color: var(--accent); }
-.nav__links a:hover::after { width: 100%; }
 
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 80px;
-  padding-bottom: 80px;
-  position: relative;
-}
-.hero__name {
-  font-family: var(--font-display);
-  font-size: clamp(56px, 10vw, 140px);
-  font-weight: 700;
-  letter-spacing: -.04em;
-  line-height: .9;
-  margin-bottom: 32px;
-  color: var(--white);
-}
-.hero__stats {
-  font-family: var(--font-mono);
-  font-size: clamp(11px, 1.4vw, 14px);
-  color: var(--white-60);
-  letter-spacing: .04em;
-  margin-bottom: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 16px;
-}
-.hero__stats span { white-space: nowrap; }
-.hero__stats .sep { color: var(--accent); }
-.hero__tagline {
-  font-family: var(--font-display);
-  font-size: clamp(18px, 2.4vw, 28px);
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--white);
-  max-width: 680px;
-  margin-bottom: 12px;
-}
-.hero__tagline--sub {
-  font-family: var(--font-body);
-  font-size: clamp(16px, 1.8vw, 20px);
-  font-weight: 400;
-  color: var(--white-60);
-  max-width: 600px;
-  margin-bottom: 48px;
-}
-.hero__ctas {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 56px;
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 32px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  border-radius: var(--radius);
-  transition: all .3s var(--ease);
-  position: relative;
-  overflow: hidden;
-}
-.btn--solid {
-  background: var(--accent);
-  color: var(--bg);
-}
-.btn--solid:hover {
-  background: #d4ff5e;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(200,255,46,.2);
-}
-.btn--ghost {
-  background: transparent;
-  color: var(--white);
-  border: 1px solid var(--white-20);
-}
-.btn--ghost:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translateY(-2px);
-}
-
-/* Credential badges */
-.hero__badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  background: var(--surface);
-  border: 1px solid var(--white-08);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: .06em;
-  color: var(--white-60);
-  transition: all .4s var(--ease);
-  text-transform: uppercase;
-}
-.badge:hover {
-  border-color: var(--white-20);
-  color: var(--white);
-  transform: translateY(-2px);
-}
-.badge--glow {
-  border-color: rgba(200,255,46,.25);
-  color: var(--accent);
-  box-shadow: 0 0 20px rgba(200,255,46,.08), inset 0 0 20px rgba(200,255,46,.03);
-  animation: glow-pulse 3s ease-in-out infinite;
-}
-.badge--glow:hover {
-  box-shadow: 0 0 30px rgba(200,255,46,.15), inset 0 0 30px rgba(200,255,46,.05);
-  border-color: rgba(200,255,46,.4);
-}
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(200,255,46,.08), inset 0 0 20px rgba(200,255,46,.03); }
-  50% { box-shadow: 0 0 30px rgba(200,255,46,.14), inset 0 0 30px rgba(200,255,46,.06); }
-}
-.badge__icon {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-
-/* ============================================================
-   BRAG BAR
-   ============================================================ */
-.brag {
-  background: var(--surface);
-  border-top: 1px solid var(--white-08);
-  border-bottom: 1px solid var(--white-08);
-  padding: clamp(48px, 8vw, 80px) 0;
-  overflow: hidden;
-}
-.brag__numbers {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 32px 48px;
-  margin-bottom: 48px;
-}
-.brag__item {
-  text-align: left;
-}
-.brag__value {
-  font-family: var(--font-mono);
-  font-size: clamp(32px, 5vw, 52px);
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.brag__label {
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: var(--white-40);
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-.brag__genres {
-  font-family: var(--font-body);
-  font-size: clamp(14px, 1.6vw, 16px);
-  color: var(--white-40);
-  line-height: 1.8;
-}
-.brag__genres span {
-  color: var(--white-60);
-  transition: color .3s;
-}
-.brag__genres span:hover { color: var(--white); }
-.brag__genres .dot {
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 50%;
-  margin: 0 10px;
-  vertical-align: middle;
-}
-
-/* ============================================================
-   CASE STUDIES — FLIP CARDS
-   ============================================================ */
-.cases {
-  overflow: visible;
-}
-.cases__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  margin-bottom: 40px;
-}
-.flip-card {
-  perspective: 1000px;
-  height: 380px;
-}
-.flip-card__inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform .6s var(--ease);
-  transform-style: preserve-3d;
-}
-.flip-card:hover .flip-card__inner,
-.flip-card.flipped .flip-card__inner {
-  transform: rotateY(180deg);
-}
-.flip-card__front, .flip-card__back {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--white-08);
-  background: var(--surface);
-}
-.flip-card__back {
-  transform: rotateY(180deg);
-  background: var(--surface-2);
-  border-color: rgba(200,255,46,.15);
-}
-.flip-card__num {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: .1em;
-  margin-bottom: 16px;
-}
-.flip-card__title {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -.02em;
-  margin-bottom: 8px;
-}
-.flip-card__category {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--white-40);
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  margin-bottom: auto;
-}
-.flip-card__hint {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--white-20);
-  letter-spacing: .06em;
-  margin-top: 16px;
-}
-.flip-card__back-title {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: var(--accent);
-}
-.flip-card__back-text {
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--white-60);
-}
-.flip-card__back-stat {
-  margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid var(--white-08);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-}
-.cases__attribution {
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--white-40);
-  font-style: italic;
-  margin-bottom: 48px;
-  padding-left: 20px;
-  border-left: 2px solid var(--accent);
-}
-.cases__cta {
-  text-align: center;
-  padding-top: 16px;
-}
-.cases__cta p {
-  font-family: var(--font-display);
-  font-size: clamp(18px, 2.2vw, 24px);
-  font-weight: 500;
-  color: var(--white-60);
-  margin-bottom: 24px;
-}
-
-/* ============================================================
-   HOW I THINK
-   ============================================================ */
-.think__content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
-  align-items: start;
-}
-.think__label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  margin-bottom: 24px;
-}
-.think__text {
-  font-family: var(--font-body);
-  font-size: clamp(16px, 1.6vw, 18px);
-  line-height: 1.75;
-  color: var(--white-60);
-}
-.think__text p { margin-bottom: 24px; }
-.think__text p:last-child { margin-bottom: 0; }
-.think__text strong {
-  color: var(--white);
-  font-weight: 500;
-}
-.think__pull {
-  position: sticky;
-  top: 120px;
-}
-.think__pull blockquote {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 36px);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -.02em;
-  color: var(--white);
-  border-left: 3px solid var(--accent);
-  padding-left: 28px;
-}
-
-@media (max-width: 768px) {
-  .think__content { grid-template-columns: 1fr; }
-  .think__pull { position: relative; top: auto; margin-bottom: 40px; order: -1; }
-}
-
-/* ============================================================
-   AI WORK SECTION
-   ============================================================ */
-.ai__intro {
-  max-width: 720px;
-  margin-bottom: 64px;
-}
-.ai__intro p {
-  font-family: var(--font-body);
-  font-size: clamp(16px, 1.6vw, 18px);
-  line-height: 1.75;
-  color: var(--white-60);
-  margin-bottom: 20px;
-}
-
-/* Triplet pull quote */
-.ai__triplet {
-  margin: 64px 0;
-  padding: 48px 0;
-  border-top: 1px solid var(--white-08);
-  border-bottom: 1px solid var(--white-08);
-}
-.ai__triplet-line {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 52px);
-  font-weight: 700;
-  letter-spacing: -.03em;
-  line-height: 1.2;
-  color: var(--white);
-  padding: 8px 0;
-}
-.ai__triplet-line .highlight {
-  color: var(--accent);
-}
-
-/* AI Pillars */
-.ai__pillars {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-.pillar {
-  padding: 36px;
-  background: var(--surface);
-  border: 1px solid var(--white-08);
-  transition: all .4s var(--ease);
-}
-.pillar:hover {
-  border-color: rgba(200,255,46,.2);
-  transform: translateY(-4px);
-}
-.pillar__num {
-  font-family: var(--font-mono);
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--white-04);
-  line-height: 1;
-  margin-bottom: 16px;
-}
-.pillar__title {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--white);
-}
-
-@media (max-width: 560px) {
-  .ai__pillars { grid-template-columns: 1fr; }
-}
-
-/* ============================================================
-   TRACK RECORD
-   ============================================================ */
-.track__timeline {
-  position: relative;
-  padding-left: 40px;
-}
-.track__timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--white-08) 100%);
-}
-.track__entry {
-  position: relative;
-  padding-bottom: clamp(48px, 6vw, 72px);
-}
-.track__entry:last-child { padding-bottom: 0; }
-.track__entry::before {
-  content: '';
-  position: absolute;
-  left: -44px;
-  top: 8px;
-  width: 9px;
-  height: 9px;
-  background: var(--accent);
-  border-radius: 0;
-}
-.track__dates {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: .1em;
-  margin-bottom: 8px;
-}
-.track__company {
-  font-family: var(--font-display);
-  font-size: clamp(22px, 3vw, 32px);
-  font-weight: 700;
-  letter-spacing: -.02em;
-  margin-bottom: 16px;
-}
-.track__details {
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--white-60);
-  max-width: 640px;
-}
-.track__details strong { color: var(--white); font-weight: 500; }
-
-/* ============================================================
-   IP LINE (PULL QUOTE)
-   ============================================================ */
-.ip {
-  border-top: 1px solid var(--white-08);
-  border-bottom: 1px solid var(--white-08);
-}
-.ip__content {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 48px;
-  align-items: start;
-}
-.ip__mark {
-  font-family: var(--font-display);
-  font-size: clamp(100px, 14vw, 200px);
-  font-weight: 700;
-  color: var(--accent);
-  line-height: .8;
-  opacity: .15;
-  user-select: none;
-}
-.ip__text {
-  font-family: var(--font-body);
-  font-size: clamp(16px, 1.8vw, 20px);
-  line-height: 1.75;
-  color: var(--white-60);
-}
-.ip__text p { margin-bottom: 20px; }
-.ip__text p:last-child { margin-bottom: 0; }
-.ip__text strong { color: var(--white); font-weight: 500; }
-
-@media (max-width: 640px) {
-  .ip__content { grid-template-columns: 1fr; gap: 16px; }
-  .ip__mark { font-size: 80px; }
-}
-
-/* ============================================================
-   FORBES QUOTE
-   ============================================================ */
-.forbes {
-  text-align: center;
-  padding: clamp(80px, 12vw, 140px) 0;
-}
-.forbes__glow-wrap {
-  position: relative;
-  display: inline-block;
-  padding: 48px 56px;
-  border: 1px solid rgba(200,255,46,.2);
-  background: var(--surface);
-  max-width: 720px;
-}
-.forbes__glow-wrap::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  background: linear-gradient(135deg, rgba(200,255,46,.12) 0%, transparent 50%, rgba(200,255,46,.06) 100%);
-  z-index: -1;
-  filter: blur(40px);
-}
-.forbes__label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: .15em;
-  margin-bottom: 24px;
-}
-.forbes__quote {
-  font-family: var(--font-display);
-  font-size: clamp(20px, 2.6vw, 28px);
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: -.01em;
-  color: var(--white);
-  margin-bottom: 24px;
-}
-.forbes__source {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--white-40);
-  letter-spacing: .08em;
-}
-
-/* ============================================================
-   ABOUT
-   ============================================================ */
-.about__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
-}
-.about__facts {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.about__fact {
-  padding: 24px;
-  border-left: 2px solid var(--white-08);
-  transition: border-color .3s var(--ease);
-}
-.about__fact:hover { border-color: var(--accent); }
-.about__fact-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  margin-bottom: 8px;
-}
-.about__fact-value {
-  font-family: var(--font-body);
-  font-size: 16px;
-  color: var(--white-60);
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  .about__grid { grid-template-columns: 1fr; }
-}
-
-/* ============================================================
-   CTA / CONTACT
-   ============================================================ */
-.contact {
-  border-top: 1px solid var(--white-08);
-}
-.contact__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
-  align-items: start;
-}
-.contact__text {
-  font-family: var(--font-body);
-  font-size: clamp(16px, 1.8vw, 20px);
-  line-height: 1.7;
-  color: var(--white-60);
-  margin-bottom: 32px;
-}
-.contact__text p {
-  margin-bottom: 16px;
-}
-.contact__text p:last-child { margin-bottom: 0; }
-.contact__text strong { color: var(--white); font-weight: 500; }
-.contact__form { display: flex; flex-direction: column; gap: 20px; }
-.contact__form label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--white-40);
-  margin-bottom: 6px;
-  display: block;
-}
-.contact__form input,
-.contact__form textarea {
-  width: 100%;
-  padding: 14px 16px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  color: var(--white);
-  background: var(--surface);
-  border: 1px solid var(--white-08);
-  border-radius: var(--radius);
-  outline: none;
-  transition: border-color .3s var(--ease);
-}
-.contact__form input:focus,
-.contact__form textarea:focus {
-  border-color: var(--accent);
-}
-.contact__form textarea { resize: vertical; min-height: 120px; }
-
-@media (max-width: 768px) {
-  .contact__grid { grid-template-columns: 1fr; }
-}
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.footer {
-  padding: 40px 0;
-  border-top: 1px solid var(--white-08);
-}
-.footer__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.footer__copy {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--white-20);
-}
-.footer__links {
-  display: flex;
-  gap: 24px;
-}
-.footer__links a {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--white-40);
-  transition: color .3s;
-}
-.footer__links a:hover { color: var(--accent); }
-
-/* ============================================================
-   REVEAL ANIMATIONS
-   ============================================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-stagger > .reveal { transition-delay: calc(var(--i, 0) * 80ms); }
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-  .cursor { display: none; }
-  .flip-card__inner { transition: none; }
-  .nav { transition: none; }
-  @keyframes glow-pulse { 0%, 100% { box-shadow: none; } }
-}
-
-/* ============================================================
-   MOBILE TWEAKS
-   ============================================================ */
-@media (max-width: 640px) {
-  .hero__name { font-size: clamp(42px, 12vw, 72px); }
-  .cases__grid { grid-template-columns: 1fr; }
-  .flip-card { height: 340px; }
-  .nav__links { gap: 16px; }
-  .nav__links a { font-size: 10px; }
-  .section-num { font-size: 80px; right: 10px; }
-  .brag__numbers { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-}
-
-/* Mobile nav burger */
+/* Mobile burger */
 .nav__burger {
   display: none;
   flex-direction: column;
@@ -947,6 +212,1070 @@ section {
   }
 }
 
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  padding: 14px 28px;
+  transition: all .3s var(--ease);
+  min-height: 48px;
+}
+.btn--solid {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn--solid:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200,255,46,.15);
+}
+.btn--ghost {
+  border: 1px solid var(--white-08);
+  color: var(--white-60);
+}
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-2px);
+}
+.btn--ghost svg { width: 15px; height: 15px; }
+
+/* ============================================================
+   SECTION NUMBERS (parallax)
+   ============================================================ */
+.section-num {
+  position: absolute;
+  right: clamp(10px, 3vw, 40px);
+  top: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(100px, 18vw, 220px);
+  font-weight: 700;
+  color: var(--white-04);
+  line-height: .85;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  padding: clamp(140px, 22vh, 240px) 0 clamp(80px, 14vh, 160px);
+}
+.hero__name {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 10vw, 120px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: .95;
+  margin-bottom: 24px;
+}
+.hero__stats {
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 1.2vw, 13px);
+  color: var(--white-40);
+  letter-spacing: .06em;
+  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.hero__stats .sep {
+  color: var(--white-20);
+  margin: 0 4px;
+}
+
+/* Typewriter credentials line */
+.hero__typewriter {
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.4vw, 15px);
+  color: var(--accent);
+  letter-spacing: .04em;
+  margin-bottom: 36px;
+  min-height: 1.6em;
+  display: flex;
+  align-items: center;
+}
+.hero__typewriter-text {
+  display: inline;
+}
+.hero__typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--accent);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink-cursor .6s step-end infinite;
+}
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero__tagline {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.4vw, 26px);
+  font-weight: 500;
+  letter-spacing: -.01em;
+  line-height: 1.4;
+  color: var(--white-60);
+  max-width: 640px;
+  margin-bottom: 8px;
+}
+.hero__tagline--sub {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: var(--white-40);
+  max-width: 580px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+.hero__ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--white-40);
+  padding: 8px 16px;
+  border: 1px solid var(--white-08);
+  transition: all .3s var(--ease);
+}
+.badge:hover {
+  border-color: rgba(200,255,46,.25);
+  color: var(--white-60);
+}
+.badge--glow {
+  border-color: rgba(200,255,46,.2);
+  color: var(--accent);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(200,255,46,.06); }
+  50% { box-shadow: 0 0 24px rgba(200,255,46,.12); }
+}
+.badge__icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* ============================================================
+   BRAG BAR
+   ============================================================ */
+.brag {
+  border-top: 1px solid var(--white-08);
+  border-bottom: 1px solid var(--white-08);
+  padding: clamp(48px, 8vw, 80px) 0;
+  background: var(--surface);
+}
+.brag__forbes {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.brag__forbes a {
+  display: inline-block;
+  transition: opacity .3s;
+}
+.brag__forbes a:hover { opacity: .8; }
+.brag__forbes-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(200,255,46,.1);
+}
+.brag__forbes-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--white-40);
+  letter-spacing: .1em;
+  margin-top: 4px;
+}
+.brag__numbers {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(16px, 3vw, 40px);
+  text-align: center;
+  margin-bottom: 40px;
+}
+.brag__item { padding: 8px 0; }
+.brag__value {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: var(--white);
+}
+.brag__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--white-40);
+  letter-spacing: .08em;
+  margin-top: 8px;
+}
+.brag__genres {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--white-40);
+  letter-spacing: .04em;
+}
+.brag__genres .dot {
+  color: var(--white-20);
+}
+/* Genre tags (grouped) */
+.brag__genre-groups {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 24px;
+}
+.brag__genre-group-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 8px;
+}
+.brag__genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.genre-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-40);
+  padding: 4px 10px;
+  border: 1px solid var(--white-08);
+  letter-spacing: .04em;
+}
+
+/* ============================================================
+   SECTION LABEL
+   ============================================================ */
+.think__label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 24px;
+}
+
+/* ============================================================
+   CASE STUDIES — FLIP CARDS
+   ============================================================ */
+.cases {
+  position: relative;
+  padding: clamp(80px, 12vw, 140px) 0;
+}
+.cases__attribution {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--white-40);
+  letter-spacing: .06em;
+  margin-bottom: 32px;
+}
+.cases__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--white-08);
+  border: 1px solid var(--white-08);
+  margin-bottom: 40px;
+}
+.cases-row {
+  display: grid;
+  gap: 1px;
+  background: var(--white-08);
+}
+.cases-row.r-wide { grid-template-columns: 1fr 1fr; }
+.cases-row.r-narrow { grid-template-columns: 1fr 1fr; }
+.cases-row.r-full { grid-template-columns: 1fr; }
+
+@media (max-width: 768px) {
+  .cases-row.r-wide,
+  .cases-row.r-narrow { grid-template-columns: 1fr; }
+}
+
+.flip-card {
+  perspective: 1200px;
+  cursor: pointer;
+  min-height: 380px;
+  background: var(--surface);
+}
+.flip-card__inner, .flip-inner {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .65s var(--ease);
+}
+.flip-card.flipped .flip-inner,
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-front, .flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  padding: clamp(24px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+.flip-back {
+  transform: rotateY(180deg);
+  background: var(--surface);
+}
+
+/* Flip card front content */
+.fc-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 12px;
+}
+.fc-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-20);
+  letter-spacing: .06em;
+  margin-bottom: 16px;
+}
+.fc-opening {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.8vw, 19px);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: -.01em;
+}
+.fc-principle {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--white-40);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.fc-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-20);
+  letter-spacing: .08em;
+  margin-top: auto;
+}
+
+/* Flip card back content */
+.fc-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 12px;
+}
+.fc-thesis {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: -.01em;
+}
+
+/* Metric bars */
+.metric-bars { margin-bottom: 12px; }
+.metric-row { margin-bottom: 8px; }
+.metric-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-40);
+  margin-bottom: 4px;
+  letter-spacing: .04em;
+}
+.metric-track {
+  position: relative;
+  height: 4px;
+  background: var(--white-04);
+  overflow: hidden;
+}
+.metric-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+.metric-fill.bench { background: var(--white-08); }
+.metric-fill.target { background: var(--accent); }
+
+.fc-hook-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+.fc-hook-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--white-60);
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.fc-proves {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--white-40);
+  line-height: 1.5;
+}
+.fc-proves strong { color: var(--accent); font-weight: 600; }
+
+/* Cases CTA */
+.cases__cta {
+  text-align: center;
+  margin-top: 40px;
+}
+.cases__cta p {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: var(--white-60);
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   HOW I THINK
+   ============================================================ */
+.think {
+  position: relative;
+  padding: clamp(80px, 12vw, 140px) 0;
+  background: var(--surface);
+}
+.think__content {
+  display: grid;
+  grid-template-columns: .45fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.think__pull {
+  position: sticky;
+  top: 120px;
+}
+.think__pull blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.02em;
+  color: var(--white);
+  border-left: 3px solid var(--accent);
+  padding-left: 28px;
+}
+.think__text {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.75;
+  color: var(--white-60);
+}
+.think__text p { margin-bottom: 24px; }
+.think__text p:last-child { margin-bottom: 0; }
+.think__text strong { color: var(--white); font-weight: 500; }
+.think__callout {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  color: var(--white);
+  line-height: 1.4;
+  letter-spacing: -.01em;
+  border-left: 2px solid var(--accent);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .think__content { grid-template-columns: 1fr; }
+  .think__pull { position: relative; top: auto; margin-bottom: 40px; order: -1; }
+}
+
+/* ============================================================
+   AI WORK SECTION
+   ============================================================ */
+.ai {
+  position: relative;
+  padding: clamp(80px, 12vw, 140px) 0;
+}
+.ai__intro {
+  max-width: 720px;
+  margin-bottom: 64px;
+}
+.ai__intro p {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.75;
+  color: var(--white-60);
+  margin-bottom: 20px;
+}
+.ai__intro strong { color: var(--white); font-weight: 500; }
+
+/* Triplet */
+.ai__triplet {
+  margin: 64px 0;
+  padding: 48px 0;
+  border-top: 1px solid var(--white-08);
+  border-bottom: 1px solid var(--white-08);
+}
+.ai__triplet-line {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.2;
+  color: var(--white);
+  padding: 8px 0;
+}
+.ai__triplet-line .highlight { color: var(--accent); }
+
+/* Pillars */
+.ai__pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--white-08);
+  border: 1px solid var(--white-08);
+}
+.pillar {
+  padding: clamp(24px, 3vw, 36px);
+  background: var(--surface);
+  transition: all .4s var(--ease);
+}
+.pillar:hover {
+  background: var(--surface-2);
+}
+.pillar__num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .2em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.pillar__title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.pillar__desc {
+  font-size: 14px;
+  color: var(--white-40);
+  line-height: 1.6;
+}
+@media (max-width: 560px) {
+  .ai__pillars { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   TRACK RECORD
+   ============================================================ */
+.track {
+  position: relative;
+  padding: clamp(80px, 12vw, 140px) 0;
+  background: var(--surface);
+}
+.track__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--white-08);
+  border: 1px solid var(--white-08);
+}
+.track__entry {
+  background: var(--surface);
+  padding: clamp(28px, 3.5vw, 48px);
+}
+.track__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.track__company {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(15px, 1.6vw, 19px);
+}
+.track__dates {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-20);
+  letter-spacing: .1em;
+}
+.track__headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.5vw, 32px);
+  color: var(--accent);
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.track__stats {
+  list-style: none;
+  padding: 0;
+}
+.track__stats li {
+  font-size: 13px;
+  color: var(--white-60);
+  font-weight: 400;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--white-04);
+  line-height: 1.5;
+}
+.track__stats li:last-child { border-bottom: none; }
+.track__testimonial {
+  margin-top: 16px;
+  padding: 16px;
+  background: var(--accent-dim);
+  border-left: 2px solid var(--accent);
+  font-size: 13px;
+  color: var(--white-60);
+  font-style: italic;
+  line-height: 1.6;
+}
+.track__testimonial cite {
+  display: block;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.cred-badge {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.cred-badge a {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: .08em;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.cred-badge svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.cred-detail {
+  font-size: 10px;
+  color: var(--white-40);
+  font-weight: 400;
+  display: block;
+  margin-top: 2px;
+}
+.cred-forbes {
+  padding: 10px;
+  background: rgba(200,255,46,.06);
+  border: 1px solid rgba(200,255,46,.15);
+  box-shadow: 0 0 20px rgba(200,255,46,.04);
+}
+@media (max-width: 900px) {
+  .track__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   IP LINE
+   ============================================================ */
+.ip {
+  padding: clamp(80px, 12vw, 140px) 0;
+  position: relative;
+  background: var(--bg);
+}
+.ip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(200,255,46,.02) 0%, transparent 60%);
+  pointer-events: none;
+}
+.ip__content {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: start;
+  max-width: 800px;
+}
+.ip__mark {
+  font-family: var(--font-display);
+  font-size: clamp(100px, 14vw, 200px);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: .8;
+  opacity: .15;
+  user-select: none;
+}
+.ip__text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(17px, 2.2vw, 22px);
+  color: var(--white-60);
+  line-height: 1.5;
+}
+.ip__text p { margin-bottom: 20px; }
+.ip__text p:last-child { margin-bottom: 0; }
+.ip__closer {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(19px, 2.5vw, 26px);
+  color: var(--white);
+  letter-spacing: -.01em;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--white-08);
+}
+@media (max-width: 640px) {
+  .ip__content { grid-template-columns: 1fr; gap: 16px; }
+  .ip__mark { font-size: 80px; }
+}
+
+/* ============================================================
+   FORBES QUOTE
+   ============================================================ */
+.forbes {
+  padding: clamp(80px, 12vw, 140px) 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+}
+.forbes::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 25% 50%, rgba(200,255,46,.02) 0%, transparent 55%);
+  pointer-events: none;
+}
+.forbes__content {
+  position: relative;
+  max-width: 920px;
+}
+.forbes__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  text-shadow: 0 0 30px rgba(200,255,46,.1);
+}
+.forbes__name::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(200,255,46,.15);
+}
+.forbes__qmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(6rem, 14vw, 12rem);
+  line-height: .7;
+  color: rgba(255,255,255,.03);
+  position: absolute;
+  top: -.15em;
+  left: -.06em;
+  pointer-events: none;
+  user-select: none;
+}
+.forbes blockquote {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.3rem, 3vw, 2.4rem);
+  line-height: 1.35;
+  letter-spacing: -.015em;
+  color: var(--white);
+  position: relative;
+  margin-bottom: 2rem;
+}
+.forbes__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.forbes__source {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--white-20);
+}
+.forbes__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: gap .3s ease;
+}
+.forbes__link:hover { gap: 12px; }
+.forbes__link svg { width: 14px; height: 14px; }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about {
+  position: relative;
+  padding: clamp(80px, 12vw, 140px) 0;
+}
+.about__layout {
+  display: grid;
+  grid-template-columns: .45fr 1fr;
+  gap: clamp(40px, 8vw, 100px);
+  align-items: start;
+}
+.about__left {
+  position: sticky;
+  top: 120px;
+}
+.about__heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -.03em;
+  line-height: 1.08;
+}
+.about__heading em { font-style: italic; color: var(--accent); }
+.about__body p {
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: var(--white-60);
+  font-weight: 400;
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+.about__langs {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(16px, 1.5vw, 19px);
+  color: var(--white);
+  margin-bottom: 32px;
+}
+.about__geo {
+  font-size: 14px;
+  color: var(--white-40);
+  font-style: italic;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--white-08);
+}
+@media (max-width: 768px) {
+  .about__layout { grid-template-columns: 1fr; }
+  .about__left { position: static; margin-bottom: 24px; }
+}
+
+/* ============================================================
+   CONTACT / CTA
+   ============================================================ */
+.contact {
+  position: relative;
+  padding: clamp(80px, 12vw, 140px) 0;
+  background: var(--surface);
+  border-top: 1px solid var(--white-08);
+}
+.contact__heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  letter-spacing: -.01em;
+  line-height: 1.4;
+  max-width: 600px;
+  margin-bottom: 8px;
+}
+.contact__body {
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: var(--white-60);
+  max-width: 520px;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+.contact__body strong { color: var(--white); font-weight: 500; }
+.contact__form {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+.contact__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 500px) {
+  .contact__form-row { grid-template-columns: 1fr; }
+}
+.contact__form label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--white-40);
+  margin-bottom: 6px;
+  display: block;
+}
+.contact__form input,
+.contact__form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--white);
+  background: var(--bg);
+  border: 1px solid var(--white-08);
+  outline: none;
+  transition: border-color .3s var(--ease);
+}
+.contact__form input:focus,
+.contact__form textarea:focus {
+  border-color: var(--accent);
+}
+.contact__form textarea { resize: vertical; min-height: 120px; }
+.contact__actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.contact__note {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  color: var(--white-20);
+  margin-top: 12px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--white-08);
+}
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer__copy {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--white-20);
+}
+.footer__links {
+  display: flex;
+  gap: 24px;
+}
+.footer__links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--white-40);
+  transition: color .3s;
+}
+.footer__links a:hover { color: var(--accent); }
+
+/* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger > .reveal { transition-delay: calc(var(--i, 0) * 80ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cursor { display: none; }
+  .flip-inner { transition: none; }
+  .nav { transition: none; }
+  .hero__typewriter-cursor { animation: none; opacity: 1; }
+}
+
+/* ============================================================
+   MOBILE TWEAKS
+   ============================================================ */
+@media (max-width: 640px) {
+  .hero__name { font-size: clamp(42px, 12vw, 72px); }
+  .brag__numbers { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .nav__links a { font-size: 10px; }
+  .section-num { font-size: 80px; right: 10px; }
+}
+
 /* Focus states for accessibility */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--accent);
@@ -956,22 +1285,27 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- CUSTOM CURSOR -->
 <div class="cursor" id="cursor" aria-hidden="true"></div>
 
-<!-- STICKY NAV -->
+<!-- STICKY NAV — hidden until hero name scrolls out -->
 <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
   <span class="nav__name">Julian Rinta</span>
   <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
   <div class="nav__links" id="navLinks" role="menubar">
-    <a href="#work" role="menuitem" data-magnetic>Work</a>
+    <a href="#cases" role="menuitem" data-magnetic>Cases</a>
     <a href="#approach" role="menuitem" data-magnetic>Approach</a>
-    <a href="#track" role="menuitem" data-magnetic>Track Record</a>
+    <a href="#track" role="menuitem" data-magnetic>Record</a>
+    <a href="#about" role="menuitem" data-magnetic>About</a>
     <a href="#contact" role="menuitem" data-magnetic>Contact</a>
   </div>
 </nav>
+
+<main id="main-content">
 
 <!-- ============================== HERO ============================== -->
 <section class="hero container" id="hero">
@@ -985,16 +1319,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     <span>5B views</span>
   </div>
 
-  <p class="hero__tagline reveal" style="--i:2">I've killed more projects than most strategists have launched.</p>
-  <p class="hero__tagline--sub reveal" style="--i:3">I build the systems that survive the kill — and the teams that scale them.</p>
+  <!-- Typewriter rotating credentials -->
+  <div class="hero__typewriter reveal" style="--i:2" aria-live="polite">
+    <span class="hero__typewriter-text" id="typewriterText"></span><span class="hero__typewriter-cursor" aria-hidden="true"></span>
+  </div>
 
-  <div class="hero__ctas reveal" style="--i:4">
-    <a href="#work" class="btn btn--solid" data-magnetic>See the work</a>
-    <a href="#contact" class="btn btn--ghost" data-magnetic>Let's talk</a>
+  <p class="hero__tagline reveal" style="--i:3">I've killed more projects than most strategists have launched.</p>
+  <p class="hero__tagline--sub reveal" style="--i:4">I build the systems that survive the kill &mdash; and the teams that scale them.</p>
+
+  <div class="hero__ctas reveal" style="--i:5">
+    <a href="#cases" class="btn btn--solid" data-magnetic>See the work</a>
+    <a href="#contact" class="btn btn--ghost" data-magnetic>Let's talk <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
   </div>
 
   <div class="hero__badges reveal-stagger">
-    <a href="https://www.forbes.ru/profile/448453-dzulian-rinta" target="_blank" rel="noopener" class="badge badge--glow reveal" style="--i:0" data-magnetic aria-label="Forbes Russia 2019 profile">
+    <a href="https://www.forbes.ru/biznes/384229-stanok-pechatayushchiy-dengi-v-youtube-kak-dva-priyatelya-iz-kazani-sozdali" target="_blank" rel="noopener" class="badge badge--glow reveal" style="--i:0" data-magnetic aria-label="Forbes Russia 2019 profile">
       <svg class="badge__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v18H3V3zm3 3v12h2.4l2.4-7.2V18H13V6h-2.4L8.4 13.2V6H6zm9 0v12h3c2.2 0 3-1.5 3-3.5v-5C21 4.5 20.2 6 18 6h-3z"/></svg>
       Forbes Russia 2019
     </a>
@@ -1004,7 +1343,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     </span>
     <span class="badge reveal" style="--i:2" data-magnetic>
       <svg class="badge__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L1 7l11 5 9-4.1V17h2V7L12 2zM5 13.2v4L12 20l7-2.8v-4L12 16l-7-2.8z"/></svg>
-      Premio Influenciadores Digitais Brazil
+      Pr&ecirc;mio Influenciadores Digitais Brazil
     </span>
   </div>
 </section>
@@ -1012,6 +1351,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 <!-- ============================== BRAG BAR ============================== -->
 <section class="brag" id="brag" aria-label="Key metrics">
   <div class="container">
+    <div class="brag__forbes reveal">
+      <a href="https://www.forbes.ru/biznes/384229-stanok-pechatayushchiy-dengi-v-youtube-kak-dva-priyatelya-iz-kazani-sozdali" target="_blank" rel="noopener">
+        <div class="brag__forbes-label">Forbes Russia</div>
+      </a>
+      <div class="brag__forbes-sub">Featured &mdash; 2019</div>
+    </div>
+
     <div class="brag__numbers reveal-stagger">
       <div class="brag__item reveal" style="--i:0">
         <div class="brag__value" data-count="5" data-suffix="B+" aria-label="5 billion plus views">0</div>
@@ -1019,7 +1365,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
       </div>
       <div class="brag__item reveal" style="--i:1">
         <div class="brag__value" data-count="4" data-prefix="$" data-suffix="M+/mo" aria-label="4 million plus per month revenue">0</div>
-        <div class="brag__label">Revenue</div>
+        <div class="brag__label">/month built</div>
       </div>
       <div class="brag__item reveal" style="--i:2">
         <div class="brag__value" data-count="50" data-suffix="+" aria-label="50 plus channels">0</div>
@@ -1033,118 +1379,67 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         <div class="brag__value" data-count="20" data-suffix="+" aria-label="20 plus play buttons">0</div>
         <div class="brag__label">Play Buttons</div>
       </div>
-      <div class="brag__item reveal" style="--i:5">
-        <div class="brag__value" data-count="100" data-suffix="+" aria-label="100 plus people managed">0</div>
-        <div class="brag__label">People Managed</div>
-      </div>
     </div>
 
-    <div class="brag__genres reveal">
-      <span>Kids Animation</span><span class="dot" aria-hidden="true"></span>
-      <span>DIY &amp; Crafts</span><span class="dot" aria-hidden="true"></span>
-      <span>Adult Animation</span><span class="dot" aria-hidden="true"></span>
-      <span>Lifestyle</span><span class="dot" aria-hidden="true"></span>
-      <span>Educational</span><span class="dot" aria-hidden="true"></span>
-      <span>DTC Creative</span><span class="dot" aria-hidden="true"></span>
-      <span>Cookware</span><span class="dot" aria-hidden="true"></span>
-      <span>Fintech</span><span class="dot" aria-hidden="true"></span>
-      <span>Haircare</span><span class="dot" aria-hidden="true"></span>
-      <span>Real Estate</span>
+    <div class="brag__genre-groups reveal">
+      <div>
+        <div class="brag__genre-group-label">Built from zero</div>
+        <div class="brag__genre-list">
+          <span class="genre-tag">Kids Animation</span>
+          <span class="genre-tag">DIY &amp; Crafts</span>
+          <span class="genre-tag">Adult Animation</span>
+          <span class="genre-tag">Lifestyle</span>
+          <span class="genre-tag">Educational</span>
+        </div>
+      </div>
+      <div>
+        <div class="brag__genre-group-label">Performance</div>
+        <div class="brag__genre-list">
+          <span class="genre-tag">DTC Creative</span>
+          <span class="genre-tag">Cookware</span>
+          <span class="genre-tag">Fintech</span>
+          <span class="genre-tag">Haircare</span>
+          <span class="genre-tag">Real Estate</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================== CASE STUDIES ============================== -->
-<section class="cases container" id="work" aria-label="Case studies">
+<section class="cases container" id="cases" aria-label="Case studies">
   <div class="section-num" data-parallax aria-hidden="true">02</div>
 
   <div class="think__label reveal">Case Studies</div>
+  <div class="cases__attribution reveal">Five campaigns. One strategist. All produced at Hype On Media.</div>
 
   <div class="cases__grid reveal-stagger">
 
-    <div class="flip-card reveal" style="--i:0">
-      <div class="flip-card__inner">
-        <div class="flip-card__front">
-          <div class="flip-card__num">01</div>
-          <h3 class="flip-card__title">Caraway</h3>
-          <div class="flip-card__category">Cookware DTC</div>
-          <div class="flip-card__hint">Hover to flip &rarr;</div>
-        </div>
-        <div class="flip-card__back">
-          <div class="flip-card__back-title">Caraway</div>
-          <div class="flip-card__back-text">Premium cookware brand. Built performance creative strategy from zero — UGC pipeline, paid social frameworks, and iterative testing loops that scaled spend while maintaining efficiency.</div>
-          <div class="flip-card__back-stat">DTC Performance Creative</div>
-        </div>
+    <div class="cases-row r-wide">
+      <div class="flip-card reveal" style="--i:0" onclick="this.classList.toggle('flipped')" role="button" tabindex="0" aria-label="Non-toxic cookware case. Click for metrics.">
+        <div class="flip-inner"><div class="flip-front"><div class="fc-tag">DTC Physical &middot; Performance Creative</div><div class="fc-meta">Non-Toxic Cookware &middot; US &middot; Q1 2025</div><div class="fc-opening">&ldquo;Four celebrity chefs lobbied to keep toxic chemicals in your cookware. One brand had already removed them.&rdquo;</div><div class="fc-principle">Regulatory tailwinds are creative weapons</div><div class="fc-hint">Click for metrics</div></div><div class="flip-back"><div class="fc-title">The Thesis</div><div class="fc-thesis">&ldquo;This brand was clean before the law required it.&rdquo; Not compliance. Conviction.</div><div class="metric-bars"><div class="metric-row"><div class="metric-label"><span>Hook Rate</span><span>45%+ (avg 30%)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:60%"></div><div class="metric-fill target" style="width:90%"></div></div></div><div class="metric-row"><div class="metric-label"><span>CPA</span><span>&lt;$65 (avg $85)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:85%"></div><div class="metric-fill target" style="width:65%"></div></div></div><div class="metric-row"><div class="metric-label"><span>ROAS</span><span>3.0x (avg 2.0x)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:50%"></div><div class="metric-fill target" style="width:75%"></div></div></div></div><div class="fc-hook-label">Winning Hook</div><div class="fc-hook-text">&ldquo;I switched my skincare, my cleaners, my food... then I looked at my cookware.&rdquo;</div><div class="fc-proves"><strong>Proves:</strong> The brand that translates legislation into consumer language wins the trust race permanently.</div></div></div>
+      </div>
+      <div class="flip-card reveal" style="--i:1" onclick="this.classList.toggle('flipped')" role="button" tabindex="0" aria-label="Fintech case. Click for metrics.">
+        <div class="flip-inner"><div class="flip-front"><div class="fc-tag">DTC Digital &middot; Fintech</div><div class="fc-meta">Personal Finance App &middot; North America &middot; 2024</div><div class="fc-opening">&ldquo;It's a Tuesday at 9:47 PM. She just found a $340 charge on the joint account that neither of them remembers.&rdquo;</div><div class="fc-principle">The best territory is the one nobody will claim</div><div class="fc-hint">Click for metrics</div></div><div class="flip-back"><div class="fc-title">The Thesis</div><div class="fc-thesis">&ldquo;The competitive set isn't other finance apps. It's Gottman, Esther Perel, and the conversation your parents never had about money.&rdquo;</div><div class="metric-bars"><div class="metric-row"><div class="metric-label"><span>CTR</span><span>&gt;2.0% (avg 1.1%)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:44%"></div><div class="metric-fill target" style="width:80%"></div></div></div><div class="metric-row"><div class="metric-label"><span>CPA (trial)</span><span>&lt;$15 (avg $18)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:72%"></div><div class="metric-fill target" style="width:60%"></div></div></div><div class="metric-row"><div class="metric-label"><span>Trial&rarr;Paid</span><span>&gt;25% (avg 22%)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:55%"></div><div class="metric-fill target" style="width:63%"></div></div></div></div><div class="fc-hook-label">Winning Hook</div><div class="fc-hook-text">&ldquo;My old budgeting app made me a better budgeter. This one made me a better partner.&rdquo;</div><div class="fc-proves"><strong>Proves:</strong> 48% of couples fight about money. $0 competitive spend in that territory. We claimed it.</div></div></div>
       </div>
     </div>
 
-    <div class="flip-card reveal" style="--i:1">
-      <div class="flip-card__inner">
-        <div class="flip-card__front">
-          <div class="flip-card__num">02</div>
-          <h3 class="flip-card__title">Monarch Money</h3>
-          <div class="flip-card__category">Fintech</div>
-          <div class="flip-card__hint">Hover to flip &rarr;</div>
-        </div>
-        <div class="flip-card__back">
-          <div class="flip-card__back-title">Monarch Money</div>
-          <div class="flip-card__back-text">Personal finance app competing against Mint's shutdown. Created conversion-focused creative that translated complex financial features into clear, compelling narratives for acquisition campaigns.</div>
-          <div class="flip-card__back-stat">Fintech Creative Strategy</div>
-        </div>
+    <div class="cases-row r-narrow">
+      <div class="flip-card reveal" style="--i:2" onclick="this.classList.toggle('flipped')" role="button" tabindex="0" aria-label="Haircare case. Click for metrics.">
+        <div class="flip-inner"><div class="flip-front"><div class="fc-tag">DTC Beauty &middot; Personalized</div><div class="fc-meta">Haircare &middot; US/AU &middot; Q1 2025</div><div class="fc-opening">&ldquo;She moved from Austin to Portland. Her hair freaked out. Her shampoo didn't&mdash;because it already knew.&rdquo;</div><div class="fc-principle">Reclaim poisoned words through depth</div><div class="fc-hint">Click for metrics</div></div><div class="flip-back"><div class="fc-title">The Thesis</div><div class="fc-thesis">&ldquo;Static quiz &rarr; living formula. That's the gap between what competitors promise and what this brand delivers.&rdquo;</div><div class="metric-bars"><div class="metric-row"><div class="metric-label"><span>CPA (quiz)</span><span>&lt;$8 (avg $10)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:67%"></div><div class="metric-fill target" style="width:53%"></div></div></div><div class="metric-row"><div class="metric-label"><span>Quiz completion</span><span>&gt;65% (avg 55%)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:55%"></div><div class="metric-fill target" style="width:65%"></div></div></div><div class="metric-row"><div class="metric-label"><span>ROAS</span><span>&gt;2.5x (avg 2.2x)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:55%"></div><div class="metric-fill target" style="width:63%"></div></div></div></div><div class="fc-hook-label">Winning Hook</div><div class="fc-hook-text">&ldquo;The quiz asked about my water hardness. That's when I knew this was different.&rdquo;</div><div class="fc-proves"><strong>Proves:</strong> 85 factors including your zip code means something different than &ldquo;pick your color and fragrance.&rdquo;</div></div></div>
+      </div>
+      <div class="flip-card reveal" style="--i:3" onclick="this.classList.toggle('flipped')" role="button" tabindex="0" aria-label="YouTube lead gen case. Click for metrics.">
+        <div class="flip-inner"><div class="flip-front"><div class="fc-tag">YouTube &middot; Organic Lead Gen</div><div class="fc-meta">Regional Real Estate &middot; USA &middot; 2024</div><div class="fc-opening">&ldquo;I told my client to wait. It cost them $40K. Here's what I learned.&rdquo;</div><div class="fc-principle">Compound assets beat paid channels</div><div class="fc-hint">Click for metrics</div></div><div class="flip-back"><div class="fc-title">The Thesis</div><div class="fc-thesis">&ldquo;The paralysis is the niche. Content that acknowledges the fear converts better than content that pretends the market is fine.&rdquo;</div><div class="metric-bars"><div class="metric-row"><div class="metric-label"><span>Thumbnail CTR</span><span>&gt;8% (avg 4.5%)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:45%"></div><div class="metric-fill target" style="width:80%"></div></div></div><div class="metric-row"><div class="metric-label"><span>Consults/mo</span><span>10-25 (avg 2)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:12%"></div><div class="metric-fill target" style="width:75%"></div></div></div><div class="metric-row"><div class="metric-label"><span>Revenue/video</span><span>$1.5-4K (avg $0)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:0%"></div><div class="metric-fill target" style="width:70%"></div></div></div></div><div class="fc-hook-label">Winning Hook</div><div class="fc-hook-text">&ldquo;I Told My Client to Wait. It Cost Them $40K.&rdquo; No competitor will publish a confession.</div><div class="fc-proves"><strong>Proves:</strong> $0 ad spend &rarr; $9K-24K/month revenue. A YouTube video generates leads for 3 years.</div></div></div>
       </div>
     </div>
 
-    <div class="flip-card reveal" style="--i:2">
-      <div class="flip-card__inner">
-        <div class="flip-card__front">
-          <div class="flip-card__num">03</div>
-          <h3 class="flip-card__title">Prose</h3>
-          <div class="flip-card__category">Haircare</div>
-          <div class="flip-card__hint">Hover to flip &rarr;</div>
-        </div>
-        <div class="flip-card__back">
-          <div class="flip-card__back-title">Prose</div>
-          <div class="flip-card__back-text">Custom haircare brand. Developed creative strategy that communicated personalization at scale — bridging the gap between bespoke product positioning and mass-market paid acquisition.</div>
-          <div class="flip-card__back-stat">Personalized DTC Creative</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flip-card reveal" style="--i:3">
-      <div class="flip-card__inner">
-        <div class="flip-card__front">
-          <div class="flip-card__num">04</div>
-          <h3 class="flip-card__title">Real Estate Organic</h3>
-          <div class="flip-card__category">Real Estate</div>
-          <div class="flip-card__hint">Hover to flip &rarr;</div>
-        </div>
-        <div class="flip-card__back">
-          <div class="flip-card__back-title">Real Estate — Organic</div>
-          <div class="flip-card__back-text">Built organic content engine for real estate brand. YouTube-first strategy with SEO-driven topics, authority positioning, and a content calendar that compounded search visibility over 12 months.</div>
-          <div class="flip-card__back-stat">Organic Content Engine</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flip-card reveal" style="--i:4">
-      <div class="flip-card__inner">
-        <div class="flip-card__front">
-          <div class="flip-card__num">05</div>
-          <h3 class="flip-card__title">Real Estate Paid</h3>
-          <div class="flip-card__category">Real Estate</div>
-          <div class="flip-card__hint">Hover to flip &rarr;</div>
-        </div>
-        <div class="flip-card__back">
-          <div class="flip-card__back-title">Real Estate — Paid</div>
-          <div class="flip-card__back-text">Paid social and video ad campaigns for real estate. Created high-converting video creative with market-specific messaging, virtual tour integrations, and retargeting sequences.</div>
-          <div class="flip-card__back-stat">Paid Social + Video</div>
-        </div>
+    <div class="cases-row r-full">
+      <div class="flip-card reveal" style="--i:4" onclick="this.classList.toggle('flipped')" role="button" tabindex="0" aria-label="Luxury real estate case. Click for metrics.">
+        <div class="flip-inner"><div class="flip-front"><div class="fc-tag">Luxury &middot; Multi-Market &middot; Performance Creative</div><div class="fc-meta">USA &amp; Dubai &middot; Meta, Google, LinkedIn, WhatsApp &middot; 2024</div><div class="fc-opening">&ldquo;A $2M property on Instagram feels wrong. That instinct is exactly what we built the creative system to kill.&rdquo;</div><div class="fc-principle">Creative IS targeting when platforms strip it</div><div class="fc-hint">Click for metrics</div></div><div class="flip-back"><div class="fc-title">The Thesis</div><div class="fc-thesis">&ldquo;Price points are audience filters. Production quality is income targeting. Neighborhood names replace zip codes.&rdquo;</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem"><div><div class="fc-hook-label">USA Market</div><div class="metric-bars"><div class="metric-row"><div class="metric-label"><span>CPL</span><span>&lt;$45 (avg $55)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:73%"></div><div class="metric-fill target" style="width:60%"></div></div></div><div class="metric-row"><div class="metric-label"><span>ROAS</span><span>&gt;5x (avg 3x)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:43%"></div><div class="metric-fill target" style="width:71%"></div></div></div></div></div><div><div class="fc-hook-label">Dubai Market</div><div class="metric-bars"><div class="metric-row"><div class="metric-label"><span>CPL</span><span>&lt;$35 (avg $45)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:64%"></div><div class="metric-fill target" style="width:50%"></div></div></div><div class="metric-row"><div class="metric-label"><span>WhatsApp</span><span>&gt;60% (avg 40%)</span></div><div class="metric-track"><div class="metric-fill bench" style="width:40%"></div><div class="metric-fill target" style="width:60%"></div></div></div></div></div></div><div class="fc-proves" style="margin-top:1rem"><strong>Proves:</strong> Two markets, two psychologies, one framework. Creative becomes the media plan.</div></div></div>
       </div>
     </div>
 
   </div>
-
-  <div class="cases__attribution reveal">Five campaigns. One strategist. All produced at Hype On Media.</div>
 
   <div class="cases__cta reveal">
     <p>Want this kind of thinking applied to your brand?</p>
@@ -1153,174 +1448,221 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </section>
 
 <!-- ============================== HOW I THINK ============================== -->
-<section class="container" id="approach">
-  <div class="section-num" data-parallax aria-hidden="true">03</div>
+<section class="think" id="approach">
+  <div class="container">
+    <div class="section-num" data-parallax aria-hidden="true">03</div>
 
-  <div class="think__label reveal">How I Think</div>
+    <div class="think__label reveal">How I Think</div>
 
-  <div class="think__content">
-    <div class="think__pull reveal">
-      <blockquote>Every decision starts with the audience and ends with a number. Or a kill. The willingness to kill is the part most directors skip.</blockquote>
-    </div>
-    <div class="think__text reveal" style="--i:1">
-      <p>When I arrived at Bored Panda, the international operation was one Lithuanian editor translating videos with Google Translate. When I left, it was <strong>50+ channels across 15 languages generating $400K/month</strong> — with a team I built, systems I designed, and a P&amp;L I owned.</p>
-      <p>In between, I shut down a channel generating $40K/month because the retention curve flatlined at week 6. Within 90 days, total revenue was higher than if I'd kept it alive.</p>
-      <p>That's how I think.</p>
+    <div class="think__content">
+      <div class="think__pull reveal">
+        <blockquote>The willingness to kill is the part most directors <em style="font-style:italic;color:var(--accent)">skip.</em></blockquote>
+      </div>
+      <div class="think__text reveal" style="--i:1">
+        <p>When I arrived at Bored Panda, the international operation was one Lithuanian editor translating videos with Google Translate. When I left, it was <strong>50+ channels across 15 languages generating $400K/month</strong> &mdash; with a team I built, systems I designed, and a P&amp;L I owned.</p>
+        <p>In between, I shut down a channel generating $40K/month because the retention curve flatlined at week 6. Within 90 days, total revenue was higher than if I'd kept it alive.</p>
+        <div class="think__callout">That's how I think. Every decision starts with the audience and ends with a number. Or a kill.</div>
+        <p>I built Facebook pages when a single post could move a million views in a week. By the time YouTube had analytics dashboards, I'd already been tracking channels with custom systems &mdash; making calls on CTR, retention, and revenue attribution when those metrics barely had names.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================== AI-POWERED WORK ============================== -->
-<section class="container" id="ai">
+<!-- ============================== HOW I WORK — AI ============================== -->
+<section class="ai container" id="ai">
   <div class="section-num" data-parallax aria-hidden="true">04</div>
 
-  <div class="think__label reveal">How I Work — AI-Powered Revenue Systems</div>
+  <div class="think__label reveal">How I Work &mdash; AI-Powered Revenue Systems</div>
 
   <div class="ai__intro reveal">
-    <p>In 2022, I reduced operational costs <strong>70%</strong> with AI. Not as an experiment. As a restructuring. I replaced people with systems and kept one human checkpoint, then rebuilt how a video goes from idea to published file — a full year before ChatGPT launched publicly.</p>
+    <p>In 2022, I reduced operational costs <strong>70%</strong> with AI. Not as an experiment. As a restructuring. I replaced people with systems and kept one human checkpoint, then rebuilt how a video goes from idea to published file &mdash; a full year before ChatGPT launched publicly.</p>
   </div>
 
   <div class="ai__triplet reveal">
     <div class="ai__triplet-line">The <span class="highlight">strategy</span> is mine.</div>
     <div class="ai__triplet-line">The <span class="highlight">AI</span> handles the volume.</div>
-    <div class="ai__triplet-line">The <span class="highlight">humans</span> handle the judgment.</div>
+    <div class="ai__triplet-line"><span class="highlight">I</span> handle the judgment.</div>
   </div>
 
   <div class="ai__pillars reveal-stagger">
     <div class="pillar reveal" style="--i:0" data-magnetic>
       <div class="pillar__num">01</div>
       <div class="pillar__title">Knowledge Architecture</div>
+      <div class="pillar__desc">I built a structured library &mdash; audience profiles, hook patterns, frameworks &mdash; indexed so AI agents can pull from it in seconds.</div>
     </div>
     <div class="pillar reveal" style="--i:1" data-magnetic>
       <div class="pillar__num">02</div>
       <div class="pillar__title">AI-Assisted Ideation</div>
+      <div class="pillar__desc">I set the angle. The system generates hooks, variants, scripts. I filter. The editor builds the final piece.</div>
     </div>
     <div class="pillar reveal" style="--i:2" data-magnetic>
       <div class="pillar__num">03</div>
       <div class="pillar__title">Revenue Systems</div>
+      <div class="pillar__desc">Channel diagnostics, competitor monitoring, automated research pipelines. I build the tools that surface what's working and flag what's dying &mdash; so decisions happen before damage does.</div>
     </div>
     <div class="pillar reveal" style="--i:3" data-magnetic>
       <div class="pillar__num">04</div>
-      <div class="pillar__title">Human-in-the-Loop Production</div>
+      <div class="pillar__title">Human-in-the-Loop</div>
+      <div class="pillar__desc">Editors, designers, and talent make the final pieces. I architect the concept and the testing system. What performs gets scaled. What doesn't gets cut.</div>
     </div>
   </div>
 </section>
 
 <!-- ============================== TRACK RECORD ============================== -->
-<section class="container" id="track">
-  <div class="section-num" data-parallax aria-hidden="true">05</div>
+<section class="track" id="track">
+  <div class="container">
+    <div class="section-num" data-parallax aria-hidden="true">05</div>
 
-  <div class="think__label reveal">Track Record</div>
+    <div class="think__label reveal">Track Record</div>
 
-  <div class="track__timeline reveal-stagger">
+    <div class="track__grid reveal-stagger">
 
-    <div class="track__entry reveal" style="--i:0">
-      <div class="track__dates">2015 — 2016</div>
-      <h3 class="track__company">TheSoul Publishing</h3>
-      <div class="track__details">
-        <strong>$0 to $2M+/month in 18 months.</strong> CEO International. 100+ person team. Forbes Russia. 5-Minute Crafts founding team. Built the international expansion engine from scratch.
+      <!-- TheSoul -->
+      <div class="track__entry reveal" style="--i:0">
+        <div class="track__header">
+          <span class="track__company">TheSoul Publishing</span>
+          <span class="track__dates">2015 &mdash; 2016</span>
+        </div>
+        <div class="track__headline">$0 &rarr; $2M+/mo</div>
+        <ul class="track__stats">
+          <li>CEO, International Business Unit &mdash; built from zero. Four markets, no playbook, Facebook-first during the organic viral era.</li>
+          <li>Genial.guru &rarr; 15M monthly visitors in 3 months. Surpassed Spanish BuzzFeed in under 6 months.</li>
+          <li>100+ person multinational remote team. Flew to S&atilde;o Paulo to hire the Brazilian operation.</li>
+          <li>Founding team of 5-Minute Crafts. Named Ideas en 5 Minutos. Drove early international FB growth. Today: 60M+ subs.</li>
+          <li>$50K+/mo paid media &mdash; the international unit ran its own acquisition, not just organic.</li>
+        </ul>
+        <div class="cred-badge cred-forbes"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg><div>Forbes Russia, 2019 <a href="https://www.forbes.ru/biznes/384229-stanok-pechatayushchiy-dengi-v-youtube-kak-dva-priyatelya-iz-kazani-sozdali" target="_blank" rel="noopener">Read &rarr;</a></div></div>
+        <div class="cred-badge"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg><div>5-Minute Crafts &middot; Founding Team <a href="https://time.com/5636360/five-minute-crafts-youtube-channel-explained/" target="_blank" rel="noopener">Time &rarr;</a></div></div>
+        <div class="cred-badge"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg><div><span lang="pt">Pr&ecirc;mio Influenciadores Digitais 2016</span> <a href="https://newsroom.br.paypal-corp.com/Premio-Influenciadores-Digitais-elege-personalidades-da-internet" target="_blank" rel="noopener">Source &rarr;</a></div></div>
       </div>
-    </div>
 
-    <div class="track__entry reveal" style="--i:1">
-      <div class="track__dates">2019 — 2023</div>
-      <h3 class="track__company">Bored Panda</h3>
-      <div class="track__details">
-        <strong>1 editor to 50+ channels, $400K+/month.</strong> Created FireSpike — Lithuania's first international kids animation IP. Crafty Panda 80M+ followers. Gotcha! #1 worldwide. Studio71 deal. 70% AI cost reduction.
+      <!-- Bored Panda -->
+      <div class="track__entry reveal" style="--i:1">
+        <div class="track__header">
+          <span class="track__company">Bored Panda</span>
+          <span class="track__dates">2019 &mdash; 2023</span>
+        </div>
+        <div class="track__headline">1 editor &rarr; 50+ ch</div>
+        <ul class="track__stats">
+          <li>Director, Global Content. One editor with Google Translate &rarr; 50+ YT channels, 70+ social pages, 15 languages, 80-100 person team, independent P&amp;L.</li>
+          <li>Created from scratch: Trucos Panda ($250K in 5 mo), Crafty Panda (80M+ followers), Kaboom, Chicas Panda, Dear Diary, dozens more.</li>
+          <li>Built the team and directed FireSpike from concept &mdash; Lithuania's first international kids animation. 230K+ subs, 150M+ views, Silver Play Button, YouTube Kids.</li>
+          <li>Shaped growth strategy for Gotcha! (3M subs, 2.3B views 2023, #1 worldwide). Built portfolio behind Studio71 deal (16 channels).</li>
+          <li>Cut costs 70% via AI restructuring in 2022 &mdash; a full year before ChatGPT launched.</li>
+        </ul>
+        <div class="track__testimonial">&ldquo;Julian played a critical role in building our multilingual video division from the ground up. He operated with full ownership, transforming the unit into an independent business stream with its own P&amp;L.&rdquo;<cite>COO, Bored Panda</cite></div>
+        <div class="cred-badge"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><div>FireSpike &middot; Silver Play Button <a href="https://www.boredpanda.com/fire-spike-animation-channel/" target="_blank" rel="noopener">Source &rarr;</a></div></div>
+        <div class="cred-badge"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><div>Studio71 &middot; 16 channels <a href="https://www.tubefilter.com/2021/07/26/studio71-signs-16-youtube-channels-bored-panda-group/" target="_blank" rel="noopener">Tubefilter &rarr;</a></div></div>
       </div>
-    </div>
 
-    <div class="track__entry reveal" style="--i:2">
-      <div class="track__dates">2024 — Present</div>
-      <h3 class="track__company">Hype On Media</h3>
-      <div class="track__details">
-        <strong>DTC performance creative.</strong> Bamboo Kids IP. AI tools. Full-service creative strategy for brands scaling through paid social.
+      <!-- Hype On -->
+      <div class="track__entry reveal" style="--i:2">
+        <div class="track__header">
+          <span class="track__company">Hype On Media</span>
+          <span class="track__dates">2024 &mdash; Present</span>
+        </div>
+        <div class="track__headline">AI Consultancy</div>
+        <ul class="track__stats">
+          <li>Senior Creative Strategist. DTC performance creative for cookware, fintech, haircare, real estate. Dozens of engagements &mdash; five cases in this portfolio.</li>
+          <li>Leads strategy, builds the teams, and delivers the output end to end.</li>
+          <li>Built Bamboo Kids from concept. Chinese partner bought distribution rights. YouTube Shorts: 8M+ views/month.</li>
+          <li>Builds AI tools: channel diagnostics, competitor monitoring, automated production pipelines.</li>
+        </ul>
+        <div class="cred-badge"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg><div>Bamboo Kids &middot; IP Acquired<span class="cred-detail">Distribution rights sold to Chinese partner</span></div></div>
       </div>
-    </div>
 
+    </div>
   </div>
 </section>
 
-<!-- ============================== THE IP LINE ============================== -->
-<section class="ip container">
-  <div class="ip__content reveal">
-    <div class="ip__mark" aria-hidden="true">&ldquo;</div>
-    <div class="ip__text">
-      <p>I was in the room when a channel that now has <strong>60 million subscribers</strong> was taking shape. I named its Spanish version. I drove its early international growth.</p>
-      <p>I created <strong>FireSpike</strong> — Lithuania's first international kids animation IP. Silver Play Button, 150 million views, YouTube Kids.</p>
-      <p>I built <strong>Bamboo Kids</strong> — a Chinese partner bought the rights.</p>
-      <p><strong>The content outlives the platform. That's the point.</strong></p>
+<!-- ============================== IP LINE ============================== -->
+<section class="ip">
+  <div class="container">
+    <div class="ip__content reveal">
+      <div class="ip__mark" aria-hidden="true">&ldquo;</div>
+      <div class="ip__text">
+        <p>I was in the room when a channel that now has 60 million subscribers was taking shape. I named and directed its international versions, and drove the growth that carried them into 15 languages.</p>
+        <p>I built the team and directed production on FireSpike &mdash; Lithuania's first international kids animation IP. From concept to Silver Play Button. 150 million views. YouTube Kids.</p>
+        <p>I built Bamboo Kids &mdash; a Chinese partner bought the rights.</p>
+        <div class="ip__closer">The content outlives the platform. That's the point.</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================== FORBES QUOTE ============================== -->
-<section class="forbes" aria-label="Forbes recognition">
-  <div class="section-num" data-parallax aria-hidden="true">06</div>
-  <div class="forbes__glow-wrap reveal" data-magnetic>
-    <div class="forbes__label">Forbes Russia &middot; 2019</div>
-    <blockquote class="forbes__quote">&ldquo;The youngest CEO in the international digital media space, building a content empire across 15 languages with a team of 100+.&rdquo;</blockquote>
-    <div class="forbes__source">
-      <a href="https://www.forbes.ru/profile/448453-dzulian-rinta" target="_blank" rel="noopener" style="color:var(--accent); text-decoration: underline; text-underline-offset: 3px;">Read the profile &rarr;</a>
+<section class="forbes" id="forbes" aria-label="Forbes recognition">
+  <div class="container">
+    <div class="forbes__content reveal">
+      <div class="forbes__name">Forbes Russia</div>
+      <div class="forbes__qmark">&ldquo;</div>
+      <blockquote>Built the international business unit of a global content network, scaling from zero to $4M+/month. Reached 15M monthly visitors and surpassed Spanish BuzzFeed in 90 days.</blockquote>
+      <div class="forbes__meta">
+        <span class="forbes__source">Featured in Forbes Russia, 2019</span>
+        <a href="https://www.forbes.ru/biznes/384229-stanok-pechatayushchiy-dengi-v-youtube-kak-dva-priyatelya-iz-kazani-sozdali" target="_blank" rel="noopener" class="forbes__link">Read the article <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================== ABOUT ============================== -->
-<section class="container" id="about">
+<section class="about container" id="about">
+  <div class="section-num" data-parallax aria-hidden="true">06</div>
+
   <div class="think__label reveal">About</div>
 
-  <div class="about__grid">
-    <div class="about__facts reveal-stagger">
-      <div class="about__fact reveal" style="--i:0">
-        <div class="about__fact-label">Location</div>
-        <div class="about__fact-value">LATAM-based. Emirates residency.</div>
-      </div>
-      <div class="about__fact reveal" style="--i:1">
-        <div class="about__fact-label">Languages</div>
-        <div class="about__fact-value">Spanish — English — French — Russian. Operates natively in all four.</div>
-      </div>
-      <div class="about__fact reveal" style="--i:2">
-        <div class="about__fact-label">Background</div>
-        <div class="about__fact-value">Aeronautical engineering (IPSA Paris, Kazan).</div>
-      </div>
-      <div class="about__fact reveal" style="--i:3">
-        <div class="about__fact-label">Scale</div>
-        <div class="about__fact-value">100+ people managed across Asia, Europe, LATAM, Middle East.</div>
-      </div>
+  <div class="about__layout">
+    <div class="about__left reveal">
+      <h2 class="about__heading">The person behind the <em>systems.</em></h2>
     </div>
-    <div></div>
+    <div class="about__body">
+      <p class="reveal">LATAM-based. Emirates residency.</p>
+      <p class="about__langs reveal" style="--i:1">Spanish &mdash; English &mdash; French &mdash; Russian. Operates natively in all four.</p>
+      <p class="reveal" style="--i:2">I studied how air moves over a wing &mdash; aeronautical engineering, IPSA Paris, then Kazan. The habit stuck: measure everything, trust nothing that hasn't been tested, and know exactly where the system breaks before it breaks.</p>
+      <p class="reveal" style="--i:3">I built Facebook pages when organic reach moved millions of views a week. Then YouTube. Then Instagram, TikTok, Snapchat. Then AI. Then product.</p>
+      <p class="reveal" style="--i:4">I've managed 100+ people across Asia, Europe, LATAM, and the Middle East without sharing an office with any of them. I've run payroll across four continents. I know the way a deadline means different things in Jakarta and in Moscow. Not from frameworks. From doing it.</p>
+      <div class="about__geo reveal" style="--i:5">Operated across Brazil, Russia, Indonesia, India, France, Lithuania, UAE, and Latin America.</div>
+    </div>
   </div>
 </section>
 
 <!-- ============================== CONTACT ============================== -->
-<section class="contact container" id="contact">
-  <div class="section-num" data-parallax aria-hidden="true">07</div>
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-num" data-parallax aria-hidden="true">07</div>
 
-  <div class="think__label reveal">Get in Touch</div>
+    <div class="think__label reveal">Get in Touch</div>
 
-  <div class="contact__grid">
-    <div class="contact__text reveal">
-      <p>I'm looking for a role where I build the system, not just the strategy deck.</p>
-      <p><strong>Full-time. Remote.</strong> A seat where I own the architecture — content, team, P&amp;L — and the mandate to cut what isn't working.</p>
-    </div>
-    <form class="contact__form reveal" style="--i:1" action="https://formspree.io/f/xdawpqkw" method="POST">
-      <div>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required autocomplete="name">
-      </div>
-      <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required autocomplete="email">
+    <h2 class="contact__heading reveal">Let's talk.</h2>
+
+    <form class="contact__form reveal" style="--i:1" id="contact-form">
+      <div class="contact__form-row">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
       </div>
       <div>
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+        <textarea id="message" name="message" rows="4" required></textarea>
       </div>
-      <button type="submit" class="btn btn--solid" data-magnetic>Send message</button>
+      <div class="contact__actions">
+        <button type="submit" class="btn btn--solid" data-magnetic>Send message</button>
+        <a href="https://linkedin.com/in/julianrinta" target="_blank" rel="noopener" class="btn btn--ghost" data-magnetic>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn
+        </a>
+      </div>
     </form>
+    <p class="contact__note reveal" style="--i:2">Your message goes directly to me. No spam, no mailing list.</p>
   </div>
 </section>
+
+</main>
 
 <!-- ============================== FOOTER ============================== -->
 <footer class="footer container">
@@ -1342,14 +1684,62 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ============================================================
+     TYPEWRITER — Broadway edition
+     ============================================================ */
+  (function typewriter(){
+    var phrases = [
+      '50+ channels \u00B7 15 languages',
+      '$4M/month \u00B7 5B views',
+      '20+ Play Buttons \u00B7 Forbes Russia'
+    ];
+    var el = document.getElementById('typewriterText');
+    if (!el) return;
+
+    var phraseIndex = 0;
+    var charIndex = 0;
+    var isDeleting = false;
+    var typeSpeed = 60;
+    var deleteSpeed = 30;
+    var pauseTime = 2000;
+
+    function tick() {
+      var current = phrases[phraseIndex];
+
+      if (!isDeleting) {
+        charIndex++;
+        el.textContent = current.substring(0, charIndex);
+        if (charIndex === current.length) {
+          isDeleting = false;
+          setTimeout(function(){ isDeleting = true; tick(); }, pauseTime);
+          return;
+        }
+        setTimeout(tick, typeSpeed);
+      } else {
+        charIndex--;
+        el.textContent = current.substring(0, charIndex);
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(tick, typeSpeed);
+          return;
+        }
+        setTimeout(tick, deleteSpeed);
+      }
+    }
+
+    /* Start after a brief delay so the reveal animation finishes */
+    setTimeout(tick, 1200);
+  })();
+
+  /* ============================================================
      CUSTOM CURSOR + MAGNETIC EFFECT
      ============================================================ */
-  const cursor = document.getElementById('cursor');
-  let cursorX = -100, cursorY = -100;
-  let renderX = -100, renderY = -100;
+  var cursor = document.getElementById('cursor');
+  var cursorX = -100, cursorY = -100;
+  var renderX = -100, renderY = -100;
 
   if (!prefersReduced && window.matchMedia('(pointer: fine)').matches) {
-    document.addEventListener('mousemove', e => {
+    document.addEventListener('mousemove', function(e) {
       cursorX = e.clientX;
       cursorY = e.clientY;
     });
@@ -1364,18 +1754,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     }
     animateCursor();
 
-    /* Magnetic effect on interactive elements */
-    document.querySelectorAll('[data-magnetic]').forEach(el => {
+    document.querySelectorAll('[data-magnetic]').forEach(function(el) {
       el.style.transition = 'transform .3s var(--ease)';
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => {
+      el.addEventListener('mouseenter', function() { cursor.classList.add('hovering'); });
+      el.addEventListener('mouseleave', function() {
         cursor.classList.remove('hovering');
         el.style.transform = '';
       });
-      el.addEventListener('mousemove', e => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+      el.addEventListener('mousemove', function(e) {
+        var rect = el.getBoundingClientRect();
+        var x = e.clientX - rect.left - rect.width / 2;
+        var y = e.clientY - rect.top - rect.height / 2;
         el.style.transform = 'translate(' + (x * 0.15) + 'px, ' + (y * 0.15) + 'px)';
       });
     });
@@ -1386,13 +1775,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   /* ============================================================
      STICKY NAV — slides in when hero name leaves viewport
      ============================================================ */
-  const nav = document.getElementById('nav');
-  const heroName = document.getElementById('heroName');
-  let navVisible = false;
+  var nav = document.getElementById('nav');
+  var heroName = document.getElementById('heroName');
+  var navVisible = false;
 
   function checkNav() {
-    const rect = heroName.getBoundingClientRect();
-    const shouldShow = rect.bottom < 0;
+    var rect = heroName.getBoundingClientRect();
+    var shouldShow = rect.bottom < 0;
     if (shouldShow !== navVisible) {
       navVisible = shouldShow;
       nav.classList.toggle('visible', shouldShow);
@@ -1401,14 +1790,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   window.addEventListener('scroll', checkNav, { passive: true });
 
   /* Mobile burger */
-  const burger = document.getElementById('navBurger');
-  const navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
+  var burger = document.getElementById('navBurger');
+  var navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', function() {
+    var open = navLinks.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(open));
   });
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
+  navLinks.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
       navLinks.classList.remove('open');
       burger.setAttribute('aria-expanded', 'false');
     });
@@ -1418,8 +1807,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
      REVEAL ON SCROLL
      ============================================================ */
   if (!prefersReduced) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
@@ -1427,30 +1816,29 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
   } else {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
   }
 
   /* ============================================================
      COUNT-UP ANIMATION
      ============================================================ */
-  const countEls = document.querySelectorAll('[data-count]');
-  const countObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+  var countEls = document.querySelectorAll('[data-count]');
+  var countObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
       if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = parseInt(el.dataset.count, 10);
-      const prefix = el.dataset.prefix || '';
-      const suffix = el.dataset.suffix || '';
-      const duration = 1800;
-      const start = performance.now();
+      var el = entry.target;
+      var target = parseInt(el.dataset.count, 10);
+      var prefix = el.dataset.prefix || '';
+      var suffix = el.dataset.suffix || '';
+      var duration = 1800;
+      var start = performance.now();
 
       function step(now) {
-        const progress = Math.min((now - start) / duration, 1);
-        /* Ease-out cubic */
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(eased * target);
+        var progress = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(eased * target);
         el.textContent = prefix + current + suffix;
         if (progress < 1) requestAnimationFrame(step);
       }
@@ -1459,31 +1847,30 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     });
   }, { threshold: 0.5 });
 
-  countEls.forEach(el => countObserver.observe(el));
+  countEls.forEach(function(el) { countObserver.observe(el); });
 
   /* ============================================================
      PARALLAX SECTION NUMBERS
      ============================================================ */
   if (!prefersReduced) {
-    const parallaxEls = document.querySelectorAll('[data-parallax]');
+    var parallaxEls = document.querySelectorAll('[data-parallax]');
 
     function updateParallax() {
-      parallaxEls.forEach(el => {
-        const rect = el.parentElement.getBoundingClientRect();
-        const viewH = window.innerHeight;
-        /* Only transform when section is near viewport */
+      parallaxEls.forEach(function(el) {
+        var rect = el.parentElement.getBoundingClientRect();
+        var viewH = window.innerHeight;
         if (rect.top < viewH && rect.bottom > 0) {
-          const progress = (viewH - rect.top) / (viewH + rect.height);
-          const offset = (progress - 0.5) * -80;
+          var progress = (viewH - rect.top) / (viewH + rect.height);
+          var offset = (progress - 0.5) * -80;
           el.style.transform = 'translateY(' + offset + 'px)';
         }
       });
     }
 
-    let ticking = false;
-    window.addEventListener('scroll', () => {
+    var ticking = false;
+    window.addEventListener('scroll', function() {
       if (!ticking) {
-        requestAnimationFrame(() => {
+        requestAnimationFrame(function() {
           updateParallax();
           ticking = false;
         });
@@ -1496,32 +1883,73 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
      FLIP CARDS — TOUCH SUPPORT
      ============================================================ */
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-    document.querySelectorAll('.flip-card').forEach(card => {
-      card.addEventListener('click', () => {
-        /* Close other cards first */
-        document.querySelectorAll('.flip-card.flipped').forEach(c => {
+    document.querySelectorAll('.flip-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.flip-card.flipped').forEach(function(c) {
           if (c !== card) c.classList.remove('flipped');
         });
         card.classList.toggle('flipped');
       });
     });
-    document.querySelectorAll('.flip-card__hint').forEach(el => {
+    document.querySelectorAll('.fc-hint').forEach(function(el) {
       el.innerHTML = 'Tap to flip &rarr;';
     });
   }
 
   /* ============================================================
+     FLIP CARDS — KEYBOARD SUPPORT
+     ============================================================ */
+  document.querySelectorAll('.flip-card').forEach(function(c) {
+    c.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        c.classList.toggle('flipped');
+      }
+    });
+  });
+
+  /* ============================================================
      SMOOTH SCROLL FOR ANCHOR LINKS
      ============================================================ */
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(a.getAttribute('href'));
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
+
+  /* ============================================================
+     CONTACT FORM — AJAX
+     ============================================================ */
+  var form = document.getElementById('contact-form');
+  if (form) {
+    var btn = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      fetch('https://formspree.io/f/xdawpqkw', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(r) {
+        if (r.ok) {
+          form.innerHTML = '<p style="font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.6rem);color:var(--accent);padding:2rem 0">Message sent. I\'ll be in touch.</p>';
+        } else {
+          btn.textContent = 'Send message';
+          btn.disabled = false;
+          alert('Something went wrong. Try LinkedIn instead.');
+        }
+      }).catch(function() {
+        btn.textContent = 'Send message';
+        btn.disabled = false;
+        alert('Something went wrong. Try LinkedIn instead.');
+      });
+    });
+  }
 
 })();
 </script>
