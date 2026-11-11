@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Versus — Julian Rinta</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#faf9f6; --tinta:#14110f; --gris:#6b665f; --linea:#e2ded6;
+  --color:#AB64A4; --oscuro:#563052; --tenue:#F7D9F4;
+  --display:'Fraunces',Georgia,serif; --texto:'Source Serif 4',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --paso:200ms; --curva:cubic-bezier(.2,.8,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--papel);color:var(--tinta);font-family:var(--texto);line-height:1.55;
+  -webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+ul,ol{list-style:none}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--oscuro);outline-offset:3px;border-radius:2px}
+
+.lamina{max-width:1400px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(18px,4vw,56px) 96px}
+
+.rotulo{display:flex;align-items:baseline;gap:14px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gris);margin-bottom:26px}
+.rotulo::after{content:"";flex:1;height:1px;background:var(--linea)}
+
+h1{font-family:var(--display);font-weight:900;font-size:clamp(56px,13vw,164px);line-height:.86;
+  letter-spacing:-.025em;font-variation-settings:'SOFT' 0,'WONK' 1}
+.sub{font-family:var(--mono);font-size:clamp(12px,1.5vw,15px);letter-spacing:.06em;color:var(--oscuro);
+  margin-top:18px}
+.sub b{font-weight:700;background:var(--tenue);padding:.18em .45em;border-radius:3px}
+.entrada{max-width:62ch;margin-top:26px;font-size:clamp(17px,2vw,21px);color:#3b3732}
+
+.marcador{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;
+  margin:52px 0 10px;background:var(--linea);border:1px solid var(--linea)}
+.marcador div{background:var(--papel);padding:22px 20px}
+.marcador dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gris)}
+.marcador dd{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.4vw,46px);
+  line-height:1.05;margin-top:6px;letter-spacing:-.02em}
+
+.mando{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:64px 0 18px}
+.mando h2{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.015em}
+.flechas{display:flex;gap:8px}
+.flechas button{width:46px;height:46px;border:1px solid var(--tinta);background:transparent;
+  border-radius:50%;cursor:pointer;font-size:17px;display:grid;place-items:center;
+  transition:background var(--paso) var(--curva),color var(--paso) var(--curva)}
+.flechas button:hover{background:var(--tinta);color:var(--papel)}
+.flechas button[disabled]{opacity:.25;cursor:default}
+.flechas button[disabled]:hover{background:transparent;color:inherit}
+
+.album{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-padding-left:2px;padding:4px 2px 26px;scrollbar-width:thin;
+  scrollbar-color:var(--color) var(--linea)}
+.album::-webkit-scrollbar{height:8px}
+.album::-webkit-scrollbar-track{background:var(--linea)}
+.album::-webkit-scrollbar-thumb{background:var(--color);border-radius:4px}
+
+.ficha{position:relative;flex:0 0 302px;scroll-snap-align:start;height:418px;
+  border:1px solid var(--linea);background:#fff}
+.ficha:hover{border-color:var(--color)}
+.cara{padding:26px 24px 22px;display:flex;flex-direction:column;height:100%}
+.cara[hidden]{display:none}
+.frente{align-items:center;text-align:center}
+.av{width:104px;height:104px;border-radius:50%;border:3px solid var(--tenue)}
+.frente h3{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.2;margin-top:16px;
+  letter-spacing:-.01em}
+.idi{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--gris);margin-top:7px;
+  display:flex;align-items:center;gap:6px}
+.ban{font-size:15px}
+.datos{display:flex;gap:26px;margin:18px 0 14px;width:100%;justify-content:center}
+.datos dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--gris)}
+.datos dd{font-family:var(--display);font-weight:700;font-size:27px;line-height:1.1;margin-top:3px;
+  font-variant-numeric:tabular-nums}
+.play{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;white-space:nowrap;
+  letter-spacing:.05em;color:var(--oscuro);text-decoration:none;padding:8px 13px;
+  border:1px solid var(--tenue);background:var(--tenue);border-radius:999px;margin-bottom:18px;
+  transition:transform var(--paso) var(--curva)}
+.play:hover{transform:translateY(-2px)}
+.play svg{width:15px;height:15px;fill:var(--oscuro);flex:none}
+.girar{margin-top:auto;width:100%;font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;
+  text-transform:uppercase;padding:13px;border:1px solid var(--tinta);background:transparent;
+  cursor:pointer;transition:background var(--paso) var(--curva),color var(--paso) var(--curva)}
+.girar:hover{background:var(--tinta);color:var(--papel)}
+
+.dorso{background:#fff}
+.dorso-tit{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--gris);margin-bottom:14px}
+.minis{display:grid;grid-template-columns:1fr 1fr;gap:7px;align-content:start;overflow:hidden}
+.minis img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.volver{margin-top:16px}
+
+.pie{margin-top:70px;padding-top:26px;border-top:1px solid var(--linea);font-size:15px;color:var(--gris);
+  max-width:72ch}
+.pie b{color:var(--tinta);font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+@media (max-width:620px){
+  .ficha{flex-basis:84vw}
+  .datos{gap:18px}
+}
+</style>
+</head>
+<body>
+<main class="lamina">
+  <p class="rotulo"><span>Familia 02 de 07</span></p>
+  <h1>Versus</h1>
+  <p class="sub"><b>rich vs poor</b> · <b>hot vs cold</b> · <b>popular vs not</b></p>
+  <p class="entrada">El motor no es la broma: es que siempre hay dos. El espectador se reconoce
+     en una de las dos y por eso se queda. Y como el chiste se ve en vez de oírse, el formato
+     cruza idiomas sin traducirse.</p>
+
+  <dl class="marcador">
+    <div><dt>Canales</dt><dd>25</dd></div>
+    <div><dt>Suscriptores</dt><dd>31.1M</dd></div>
+    <div><dt>Vistas</dt><dd>4.7B</dd></div>
+    <div><dt>Idiomas</dt><dd>9</dd></div>
+  </dl>
+
+  <div class="mando">
+    <h2>Los canales, uno por uno</h2>
+    <div class="flechas">
+      <button type="button" id="ant" aria-label="Canales anteriores">←</button>
+      <button type="button" id="sig" aria-label="Canales siguientes">→</button>
+    </div>
+  </div>
+
+  <ul class="album" id="album" tabindex="0" aria-label="Catálogo de canales de la familia Versus">
+    <li class="ficha" id="f0">
+  <div class="cara frente" id="a0">
+    <img class="av" src="assets/versus/ch/UCtxqQnLgj-1rAVtjpSgPS5A.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha!</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇺🇸</span> English</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="4190000">4.2M</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="339460350">339.5M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=-gXr2c0ik6w" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>54.1M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d0">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d0" hidden>
+    <p class="dorso-tit">Gotcha!</p>
+    <ul class="minis"><li><img src="assets/versus/th/-gXr2c0ik6w.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/E_3HodDPnTU.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/IeYqcn9ZXAw.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/C4oIl5XBHgk.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/SeGMBvuf_24.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/VXZWPA3U8fM.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f1">
+  <div class="cara frente" id="a1">
+    <img class="av" src="assets/versus/ch/UCccw7FMUjzDEXvYDtjLt_HA.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Hindi</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇮🇳</span> हिन्दी</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="3630000">3.6M</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="1213055703">1.2B</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=A_PXImNlwCs" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>106.2M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d1">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d1" hidden>
+    <p class="dorso-tit">Gotcha! Hindi</p>
+    <ul class="minis"><li><img src="assets/versus/th/A_PXImNlwCs.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/2HC9UOVLdu4.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Aga0Wkia0MM.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/1FV7K_kKryU.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/ATUEBoJ1KWM.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/0iju7IZpYyU.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f2">
+  <div class="cara frente" id="a2">
+    <img class="av" src="assets/versus/ch/UCWrtcU1OId_PQ_YoBN6lIRA.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Draft &amp; Done</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇺🇸</span> English</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="3300000">3.3M</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="390684632">390.7M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=Ga6gih-b_u8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>69.3M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d2">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d2" hidden>
+    <p class="dorso-tit">Draft &amp; Done</p>
+    <ul class="minis"><li><img src="assets/versus/th/Ga6gih-b_u8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/b0cwvDBm7LQ.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/x8qThrId2AQ.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/-mBG-DPAUhs.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/BxZloHbz43k.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/i2XFeKTdtRw.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f3">
+  <div class="cara frente" id="a3">
+    <img class="av" src="assets/versus/ch/UCutUv2A6NxOyiF0Fk43TRbA.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>KABOOM!</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇺🇸</span> English</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="2640000">2.6M</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="29698083">29.7M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=0L6dUlDp0BI" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>2M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d3">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d3" hidden>
+    <p class="dorso-tit">KABOOM!</p>
+    <ul class="minis"><li><img src="assets/versus/th/0L6dUlDp0BI.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/1gd8mfb-1U8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/DCtTlzpMfnk.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/5CzQzcc-uUg.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/0YPh3zU1n5s.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/4C5He_jajSI.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f4">
+  <div class="cara frente" id="a4">
+    <img class="av" src="assets/versus/ch/UCb47u05-0ojKrjfzbTcTZ3w.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom Zoom! Hindi</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇮🇳</span> हिन्दी</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="2620000">2.6M</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="1100240808">1.1B</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=22WO8RI9InQ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>121.5M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d4">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d4" hidden>
+    <p class="dorso-tit">Kaboom Zoom! Hindi</p>
+    <ul class="minis"><li><img src="assets/versus/th/22WO8RI9InQ.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/nkXqCtR9ecU.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Ay0USTGHCqo.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/6p1w9DRfo7M.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/3w4r2nGNVnk.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/yRUHQvKr-8Y.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f5">
+  <div class="cara frente" id="a5">
+    <img class="av" src="assets/versus/ch/UCZ-nMy7-cVlGn1a28IDtbXA.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Hacks Spanish</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🌐</span> English</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="1460000">1.5M</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="178864112">178.9M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=8vfgZxiTrZQ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>10.5M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d5">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d5" hidden>
+    <p class="dorso-tit">Gotcha! Hacks Spanish</p>
+    <ul class="minis"><li><img src="assets/versus/th/8vfgZxiTrZQ.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/1AZ6D3JtegQ.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/DnGe_oDRgCc.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/5uCdYczG550.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/AKPv0bCebA4.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/4NoL2CCbmD4.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f6">
+  <div class="cara frente" id="a6">
+    <img class="av" src="assets/versus/ch/UCJUyP2TgMtM2gcgZfeSGWGA.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom Energy! Spanish</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇲🇽</span> Español</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="1170000">1.2M</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="164114">164K</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=lCGmc9Db08c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>83K · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d6">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d6" hidden>
+    <p class="dorso-tit">Kaboom Energy! Spanish</p>
+    <ul class="minis"><li><img src="assets/versus/th/lCGmc9Db08c.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/eRT4yK5IFs4.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/b71THN8iobU.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/equYf9LDC_0.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/yCSbACHzopA.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/ZalaulknX7Y.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f7">
+  <div class="cara frente" id="a7">
+    <img class="av" src="assets/versus/ch/UC1nNTQKyLKs6z3LH9QS3-yg.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom Energy! Portuguese</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇧🇷</span> Português</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="1100000">1.1M</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="0">0</dd></div>
+    </dl>
+    
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d7">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d7" hidden>
+    <p class="dorso-tit">Kaboom Energy! Portuguese</p>
+    <ul class="minis"></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f8">
+  <div class="cara frente" id="a8">
+    <img class="av" src="assets/versus/ch/UCn4YlYeuIjEziMtkU3z8QGA.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Indonesian</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇮🇩</span> Bahasa</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="1060000">1.1M</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="78828903">78.8M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=5qcyR6KIzC8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>5M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d8">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d8" hidden>
+    <p class="dorso-tit">Gotcha! Indonesian</p>
+    <ul class="minis"><li><img src="assets/versus/th/5qcyR6KIzC8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/FbbkSN2oo4Q.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Crazyq4M3PE.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/0NSBxP5dfLw.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/43gOchPinYs.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/7YomvbafCMI.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f9">
+  <div class="cara frente" id="a9">
+    <img class="av" src="assets/versus/ch/UC87m8Ba73BvQsCIk2I7boSQ.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Thai</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇹🇭</span> ไทย</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="982000">982K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="125641638">125.6M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=5TtSHwg77oI" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>38.5M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d9">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d9" hidden>
+    <p class="dorso-tit">Gotcha! Thai</p>
+    <ul class="minis"><li><img src="assets/versus/th/5TtSHwg77oI.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/0A7G_4rSb_k.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/9XljpsUjLdQ.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/f6SaPSOVeq8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/T2PRMzPgEg0.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Lu9dWGhrFqQ.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f10">
+  <div class="cara frente" id="a10">
+    <img class="av" src="assets/versus/ch/UCXPj7um3A3J2JYH3F9Yzvcg.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Viral</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇺🇸</span> English</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="960000">960K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="41686934">41.7M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=3gRIU-hNIiM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>35.4M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d10">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d10" hidden>
+    <p class="dorso-tit">Gotcha! Viral</p>
+    <ul class="minis"><li><img src="assets/versus/th/3gRIU-hNIiM.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/cRlXB1PQVlA.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/53_05owFxrE.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f11">
+  <div class="cara frente" id="a11">
+    <img class="av" src="assets/versus/ch/UCi5I7XALsebAKZsNXgGpWAA.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom Zoom! Portuguese</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇧🇷</span> Português</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="825000">825K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="32535746">32.5M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=qGuMwalvGKY" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>10M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d11">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d11" hidden>
+    <p class="dorso-tit">Kaboom Zoom! Portuguese</p>
+    <ul class="minis"><li><img src="assets/versus/th/qGuMwalvGKY.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/yWlIvTd2XQE.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/PpTl5Wx8AT8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/w5mw5qigJaI.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/NJvlx4JpupI.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/iY831IIGGrk.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f12">
+  <div class="cara frente" id="a12">
+    <img class="av" src="assets/versus/ch/UCPzaRuZ2bP6kVqujnLIX_TQ.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom Energy! Arabic</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇪🇬</span> العربية</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="821000">821K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="58265741">58.3M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=UrEn_zgqgC8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>14.7M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d12">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d12" hidden>
+    <p class="dorso-tit">Kaboom Energy! Arabic</p>
+    <ul class="minis"><li><img src="assets/versus/th/UrEn_zgqgC8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Iva4n0AeBLk.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/ZQeRPAFA8i8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/1-HIG-Azsf4.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/MqoIkX6hvIc.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/0KIa-fsSFU4.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f13">
+  <div class="cara frente" id="a13">
+    <img class="av" src="assets/versus/ch/UCW_RHUiy0lxjKmBucAR83ZA.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom Zoom! Arabic</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇦🇪</span> العربية</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="800000">800K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="61199818">61.2M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=jcpT38em8G0" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>16.2M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d13">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d13" hidden>
+    <p class="dorso-tit">Kaboom Zoom! Arabic</p>
+    <ul class="minis"><li><img src="assets/versus/th/jcpT38em8G0.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/KCvcqGL9HMk.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/0hpq8b4DXrQ.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/fd2yetczRb4.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/uzQ0boaisAs.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/HZSCBNVmkFE.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f14">
+  <div class="cara frente" id="a14">
+    <img class="av" src="assets/versus/ch/UCSxi8ahR7Sfd3c0Xl22Y0Wg.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom Zoom</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇺🇸</span> English</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="790000">790K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="995609">996K</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=gQpB6MB0j5c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>161K · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d14">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d14" hidden>
+    <p class="dorso-tit">Kaboom Zoom</p>
+    <ul class="minis"><li><img src="assets/versus/th/gQpB6MB0j5c.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/D7JlyfFYAUI.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/MMk2lRofx9k.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/AhhT86jgXrc.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/VwfskrD9uyw.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/ksXGfIFHWQk.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f15">
+  <div class="cara frente" id="a15">
+    <img class="av" src="assets/versus/ch/UCM2dKZ1SEpuGtKfny0mcjUQ.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Vietnamese</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇻🇳</span> Tiếng Việt</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="719000">719K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="24364972">24.4M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=U1Unjr1_av8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>15.5M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d15">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d15" hidden>
+    <p class="dorso-tit">Gotcha! Vietnamese</p>
+    <ul class="minis"><li><img src="assets/versus/th/U1Unjr1_av8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/44wNxSWB8bc.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/beRUUaxpPW4.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Dn4HPXRhBW8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Ifhv_JhXZmU.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Ls3g6upbA1w.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f16">
+  <div class="cara frente" id="a16">
+    <img class="av" src="assets/versus/ch/UCWvrnkzvMWCDhBTs5CEB1Tw.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Go</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🌐</span> English</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="630000">630K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="710190174">710.2M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=8NnYZwgYBqk" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>115.9M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d16">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d16" hidden>
+    <p class="dorso-tit">Gotcha! Go</p>
+    <ul class="minis"><li><img src="assets/versus/th/8NnYZwgYBqk.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/TEfL-uM6wf0.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/vgQBCU0CJok.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/GIzwKSBaTyg.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/gOVWou2TxMQ.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/M0SU4c2sB6E.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f17">
+  <div class="cara frente" id="a17">
+    <img class="av" src="assets/versus/ch/UCyO3H5xNimTCsHZe2dcp3Sw.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! French</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇫🇷</span> Français</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="611000">611K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="18817444">18.8M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=-1gbhKLCf3Q" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>2.6M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d17">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d17" hidden>
+    <p class="dorso-tit">Gotcha! French</p>
+    <ul class="minis"><li><img src="assets/versus/th/-1gbhKLCf3Q.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/3fUsJ6ILaKo.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/0fE02vvhpoM.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/77yudNwAygY.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/0NvF2FKPV7E.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/1iWsA_mkXp0.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f18">
+  <div class="cara frente" id="a18">
+    <img class="av" src="assets/versus/ch/UCYP0-ty-IxkqDhYkuksM6Hw.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Viral Portuguese</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇧🇷</span> Português</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="587000">587K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="12539616">12.5M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=-bdHrFXIl24" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>61K · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d18">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d18" hidden>
+    <p class="dorso-tit">Gotcha! Viral Portuguese</p>
+    <ul class="minis"><li><img src="assets/versus/th/-bdHrFXIl24.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/89q3-fca_Ss.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/791w6kFv-qo.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/4KsgJr8U2Jg.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/4nc8RxP8uSo.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/-KlvP5CIGY4.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f19">
+  <div class="cara frente" id="a19">
+    <img class="av" src="assets/versus/ch/UCJokUeUR5Bjv-xViuwc_NOQ.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom! GO</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇺🇸</span> English</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="535000">535K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="105676610">105.7M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=4SK5JRNeB3g" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>6M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d19">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d19" hidden>
+    <p class="dorso-tit">Kaboom! GO</p>
+    <ul class="minis"><li><img src="assets/versus/th/4SK5JRNeB3g.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/2OtWefGegHM.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/B1sbLDdBqRE.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/0veNMd0Y8_I.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/5ThMnEou3gY.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/65Fhe5NTrJI.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f20">
+  <div class="cara frente" id="a20">
+    <img class="av" src="assets/versus/ch/UCQqifhwN26l0oZqFaDAitng.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Yes</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇺🇸</span> English</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="509000">509K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="4976871">5M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=GpGvIJ6Lorg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>938K · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d20">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d20" hidden>
+    <p class="dorso-tit">Gotcha! Yes</p>
+    <ul class="minis"><li><img src="assets/versus/th/GpGvIJ6Lorg.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/GToFS1hXrNk.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/EbP4yFG1lYg.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/HyywSIKSiww.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/5R5h3V1UL3s.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Ggw67M884uM.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f21">
+  <div class="cara frente" id="a21">
+    <img class="av" src="assets/versus/ch/UCp4Yzhq_bOS-mhY3XqvM0nw.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>KABOOM! Arabic</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇸🇦</span> العربية</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="443000">443K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="112385725">112.4M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=Y_AIDZBZmc8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>20.9M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d21">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d21" hidden>
+    <p class="dorso-tit">KABOOM! Arabic</p>
+    <ul class="minis"><li><img src="assets/versus/th/Y_AIDZBZmc8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/cm8nodq_7q8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/noc7Zxn9Q0o.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/VeK4fEFnoUY.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/JVzOT11tr44.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/FHISuUYre7U.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f22">
+  <div class="cara frente" id="a22">
+    <img class="av" src="assets/versus/ch/UCKfkSZCohr9tDAKNN4atyGQ.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom Go! Hindi</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇮🇳</span> हिन्दी</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="275000">275K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="6750876">6.8M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=EJKIy1CPRJ8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>1.9M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d22">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d22" hidden>
+    <p class="dorso-tit">Kaboom Go! Hindi</p>
+    <ul class="minis"><li><img src="assets/versus/th/EJKIy1CPRJ8.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/UAnziWDiLjM.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/gWZrENU37xo.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/d0ylelh0KNY.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Z6-bDf1lQlQ.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/gcxd0TloxnQ.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f23">
+  <div class="cara frente" id="a23">
+    <img class="av" src="assets/versus/ch/UCt3LYLs3Hp3pp9ECGmXF9gw.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Gotcha! Viral Vietnamese</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇻🇳</span> Tiếng Việt</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="238000">238K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="1440655">1.4M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=9hQEA6ANMwE" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>1.2M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d23">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d23" hidden>
+    <p class="dorso-tit">Gotcha! Viral Vietnamese</p>
+    <ul class="minis"><li><img src="assets/versus/th/9hQEA6ANMwE.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/eR93LOqWksg.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/3oZolSfMk2I.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/nlLAlC7EXis.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/TH272p103uk.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/wDKs2z63Pfc.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li><li class="ficha" id="f24">
+  <div class="cara frente" id="a24">
+    <img class="av" src="assets/versus/ch/UCqM1w0zFXq6zEUwsWjbyT3Q.jpg" alt="" width="176" height="176" loading="lazy">
+    <h3>Kaboom Energy! Bahasa Indonesia</h3>
+    <p class="idi"><span class="ban" aria-hidden="true">🇮🇩</span> Bahasa</p>
+    <dl class="datos">
+      <div><dt>Suscriptores</dt><dd class="n" data-n="216000">216K</dd></div>
+      <div><dt>Vistas</dt><dd class="n" data-n="52051328">52.1M</dd></div>
+    </dl>
+    <a class="play" href="https://www.youtube.com/watch?v=0lBrGtWvF_A" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>37.8M · su vídeo más visto</span></a>
+    <button class="girar" type="button" aria-expanded="false" aria-controls="d24">
+      Ver el trabajo <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="cara dorso" id="d24" hidden>
+    <p class="dorso-tit">Kaboom Energy! Bahasa Indonesia</p>
+    <ul class="minis"><li><img src="assets/versus/th/0lBrGtWvF_A.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/VTXsMejynWc.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/QHikFSWFNyk.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/hw8Js2hZ9_o.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/fhX6PwuTUpM.jpg" alt="" loading="lazy" width="336" height="189"></li><li><img src="assets/versus/th/Cx0EjFAd8Gw.jpg" alt="" loading="lazy" width="336" height="189"></li></ul>
+    <button class="girar volver" type="button"><span aria-hidden="true">←</span> Volver</button>
+  </div>
+</li>
+  </ul>
+
+  <p class="pie">Cifras leídas de la API de YouTube el 6 de noviembre de 2026.
+     Rol en esta familia: <b>shaped growth strategy</b> — Bored Panda, 2019–2023.</p>
+</main>
+
+<script>
+// Girar: por CLIC, nunca por hover. En tactil el hover se emula, se come el primer
+// toque y deja la tarjeta pegada; y lo esencial (las cifras) vive en la cara de alante.
+document.querySelectorAll('.girar').forEach(function(b){
+  b.addEventListener('click', function(){
+    var ficha=b.closest('.ficha');
+    var dorso=ficha.querySelector('.dorso');
+    var frente=ficha.querySelector('.frente');
+    var abre=dorso.hasAttribute('hidden');
+    dorso.hidden=!abre;
+    frente.hidden=abre;          // una cara a la vez, de verdad
+    var disp=frente.querySelector('.girar');
+    disp.setAttribute('aria-expanded', abre?'true':'false');
+    if(abre){ dorso.querySelector('.volver').focus(); } else { disp.focus(); }
+  });
+});
+// Flechas del album
+var album=document.getElementById('album');
+function paso(){ var f=album.querySelector('.ficha'); return f? f.offsetWidth+20 : 320; }
+document.getElementById('sig').onclick=function(){ album.scrollBy({left:paso()*2,behavior:'smooth'}); };
+document.getElementById('ant').onclick=function(){ album.scrollBy({left:-paso()*2,behavior:'smooth'}); };
+function estado(){
+  document.getElementById('ant').disabled = album.scrollLeft<8;
+  document.getElementById('sig').disabled = album.scrollLeft+album.clientWidth >= album.scrollWidth-8;
+}
+album.addEventListener('scroll',estado); window.addEventListener('resize',estado); estado();
+// Contadores: suben al entrar en pantalla, salvo que pidan menos movimiento
+var quieto=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!quieto && 'IntersectionObserver' in window){
+  var fmt=function(n){
+    if(n>=1e9) return (n/1e9).toFixed(1).replace('.0','')+'B';
+    if(n>=1e6) return (n/1e6).toFixed(1).replace('.0','')+'M';
+    if(n>=1e3) return Math.round(n/1e3)+'K';
+    return String(n); };
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting||e.target.dataset.hecho) return;
+      e.target.dataset.hecho='1';
+      var fin=+e.target.dataset.n, t0=performance.now(), dur=900;
+      (function tic(t){
+        var p=Math.min(1,(t-t0)/dur), e2=1-Math.pow(1-p,3);
+        e.target.textContent=fmt(Math.round(fin*e2));
+        if(p<1) requestAnimationFrame(tic);
+      })(t0);
+    });
+  },{threshold:.4});
+  document.querySelectorAll('.n').forEach(function(n){obs.observe(n);});
+}
+</script>
+</body>
+</html>
