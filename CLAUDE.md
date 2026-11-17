@@ -1,10 +1,46 @@
 # Julian Rinta Portfolio
 
-Single-page portfolio site. One HTML file (`index.html`), no build tools, no framework.
+Portafolio de una página. **La versión viva es `index-v3.html`, generada por `build.py`** desde
+`data/*.json`; no se edita el HTML a mano. `index.html` es la versión anterior y es la que GitHub
+Pages sirve todavía como portada.
 
-**Stack:** Vanilla HTML/CSS/JS. Fonts from Fontshare (Clash Display, Satoshi) and Google Fonts (JetBrains Mono).
+**Stack:** HTML/CSS/JS a pelo, sin framework. Generador en Python. Tipos: Fraunces y JetBrains Mono (Google), Satoshi (Fontshare).
 
-**Aesthetic direction:** Jaguar/Maserati — dark editorial, luxury with power. Acid green (`#c8ff2e`) accent on near-black. No Inter, no purple gradients, no symmetric generic layouts.
+**Aesthetic direction (REESCRITA 2026-11-10, y la anterior está DEROGADA).** Papel cálido
+(`#FBFAF7`), tinta casi negra (`#16140F`), editorial de periodismo de datos: The Pudding,
+Bloomberg Graphics, Reuters Graphics. Tipografía Fraunces para titulares, Satoshi para texto,
+JetBrains Mono para cifras. Un color por casa, apagado y con autoridad: TheSoul `#2B3A67`,
+Bored Panda `#A8432B`, Hype On Media `#1F5F4B`. El color lo pone **el trabajo** (miniaturas,
+banners de canal), nunca el fondo.
+
+⛔ **PROHIBIDO el verde ácido `#c8ff2e` sobre casi negro, que es lo que decía esta línea hasta el
+2026-11-10.** Esa instrucción produjo la versión que Julian describió como *"una pila de mierda que
+parece hecha por IA"*, y neón-sobre-negro con monoespaciada es literalmente la firma visual del
+slop. Siguen prohibidas Inter, Roboto, Arial, Space Grotesk y los degradados morados.
+
+⛔ **LAS CIFRAS SALEN DEL EXPEDIENTE, NUNCA DEL SCRAPE.** `Channel_Portfolio_Reference.md` y
+`Julian_Master_Profile.json` en el vault son la fuente de toda afirmación. Los JSON de
+`_assets/work/` son una bajada de YouTube, no un inventario: cuentan mal los canales, mezclan
+roles en dos idiomas e incluyen canales que no son suyos. **Sirven para las FOTOS y para nada
+más.** Tres versiones seguidas se cayeron por ignorar esto.
+
+⛔ **COMPUERTA DE FECHA.** Un canal cuya primera pieza es posterior a la salida de Julian de esa
+casa NO entra, ni en una cifra ni en una imagen. Salidas: TheSoul `2017-07`, Bored Panda `2024-02`.
+Son 15 de 39 los que caen.
+
+⛔ **PRIMERA PERSONA.** Es su portafolio, no una ficha sobre él. Cero "he built", cero "after he
+left".
+
+⛔ **ANTES DE PUBLICAR, MIRAR LAS IMÁGENES.** `build.py` no está terminado hasta correr:
+```bash
+python3 ~/projects/tools/hoja-de-contactos/hoja.py --html index-v3.html
+```
+y abrir las láminas. Detalle y el porqué: skill `hypeon-imagery`, sección "Human eye QA".
+
+⛔ **UN DATO BIEN MEDIDO PUEDE CONTAR LA HISTORIA CONTRARIA.** El 2026-11-10 se retiró un gráfico
+exacto y verificado tres veces porque demostraba que el canal rendía igual sin él: en un
+portafolio eso argumenta que es prescindible. Antes de publicar cualquier gráfico, la pregunta no
+es sólo si es cierto, es **a favor de quién juega**.
 
 ---
 
